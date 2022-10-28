@@ -15,8 +15,8 @@ export class Card extends Component {
 		return (
 			<div>
 				<div className="card main-card">
-                    <picture className={ this.props.imageClass }>
-                        <img src={ this.props.image } className={ "card-img-top " } alt={ this.props.title }/>
+                    <picture className={"project-images " + this.props.imageClass }>
+                        <img src={ this.props.image } className={ "card-img-top "  } alt={ this.props.title }/>
                     </picture>
 
                     <div className="card-body">
