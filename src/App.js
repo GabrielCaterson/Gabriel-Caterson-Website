@@ -40,12 +40,12 @@ function App() {
         <Card title="Sentiment-Analysis" 
               info="A sentiment analysis neural network trained on the IMDB database." 
               linkText="see jupyter notebook"
-              image=""/>
+              image="./images/sentiment.png"/>
         
         <Card title="Chad Botro" 
               info="A twitch chatbot for the streamer Chad Potro." 
               linkText="see code"
-              image=""/>
+              image="./images/twitch.png"/>
         
       </div>
 

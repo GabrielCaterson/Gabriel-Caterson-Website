@@ -81,6 +81,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  position-left: 25px;
 }
 
 .project-images {
