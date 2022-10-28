@@ -29,6 +29,10 @@
   color: gray;
 }
 
+.name-box {
+  margin: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -44,6 +48,12 @@
 
 .main-card {
   width: 350px;
+  height: 425px;
+  margin: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-box {
@@ -64,5 +74,15 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
 
+.deckscalibur-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 200px;
+  height: 200px;
+
+  margin-top: 20px;
 }

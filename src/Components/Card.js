@@ -15,7 +15,9 @@ export class Card extends Component {
 		return (
 			<div>
 				<div className="card main-card">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" className="card-img-top" alt="Fissure in Sandstone"/>
+                    <picture className={ this.props.imageClass }>
+                        <img src={ this.props.image } className={ "card-img-top " } alt={ this.props.title }/>
+                    </picture>
 
                     <div className="card-body">
                         <h5 className="card-title">{ this.props.title } </h5>
