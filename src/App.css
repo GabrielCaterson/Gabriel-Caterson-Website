@@ -1,14 +1,15 @@
 :root {
-  --dark-1: #222;
-  --dark-2: #404045;
-  background-color: var(--dark-2);
+  --dark-1: #202028;
+  --dark-2: #404048;
+  --dark-3: #707078;
+  background-color: var(--dark-1);
 
 
 }
 
 .App {
   text-align: center;
-  background-color: var(--dark-2);
+  background-color: var(--dark-1);
 
 }
 
@@ -36,6 +37,7 @@
 
 .name-box {
   margin: 20px;
+  font-weight: bold;
 }
 
 .App-link {
@@ -52,7 +54,7 @@
 }
 
 .main-card {
-  background-color: var(--dark-2);
+  background-color: var(--dark-3);
 
   width: 350px;
   height: 425px;
@@ -65,7 +67,7 @@
 
 .card-box {
   /*background-color: var(--foreground-color);*/
-  background-color: var(--dark-1);
+  background-color: var(--dark-2);
   border-radius: 5px;
   margin: 15px;
   margin-bottom: 20px;
@@ -93,6 +95,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .deckscalibur-image {
@@ -105,4 +108,9 @@
 
 .discord-image {
 
+}
+
+.card-button {
+  position: relative;
+  bottom: 20px;
 }

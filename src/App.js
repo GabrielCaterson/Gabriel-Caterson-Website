@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 import './bootstrap-5-dark-theme-main/css/mdb.dark.min.css';
+import './App.css';
+
 
 import { Card } from './Components/Card.js';
 
@@ -20,7 +21,7 @@ function App() {
       <div className="card-box">
 
         <Card title="Peripheral" 
-              info="A website that allows you to create optical illusions of motion." 
+              info="A website that allows you to create optical illusions of motion. /n" 
               linkText="visit" 
               image="./images/peripheral.png"
               imageClass="peripheral-image"/>

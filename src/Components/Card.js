@@ -22,8 +22,9 @@ export class Card extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{ this.props.title } </h5>
                         <p className="card-text">{ this.props.info }</p>
-                        <a href="#!" className="btn btn-primary">{ this.props.linkText }</a>
                     </div>
+                    <a href="#!" className="btn btn-primary card-button">{ this.props.linkText }</a>
+
                 </div>
 			</div>
 		);
