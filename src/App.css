@@ -2,6 +2,9 @@
   --dark-1: #202028;
   --dark-2: #404050;
   --dark-3: #707085;
+  --dark-4: #e0e0f5;
+  --lime: #3fff00;
+
   background-color: var(--dark-1);
 
 
@@ -85,7 +88,7 @@
 .card-box {
   /*background-color: var(--foreground-color);*/
   background-color: var(--dark-2);
-  border-radius: 5px;
+  border-radius: 15px;
   margin: 15px;
   margin-bottom: 20px;
   /*color: var(--background-color);*/
@@ -100,7 +103,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  position-left: 25px;
+  left: 25px;
 }
 
 .project-images {
@@ -122,13 +125,24 @@
 .card-button {
   position: relative;
   bottom: 20px;
+  background-color: var(--dark-4);
+  color: var(--dark-1);
 }
 
+.card-button:hover, .card-button:focus, .card-button:active {
+  background-color: var(--lime);
+  color: var(--dark-2);
+}
+
+
 .bottom-section {
+  color: var(--dark-4);
+
   display: flex;
   align-items: center;
 }
 .bottom-link {
+  color: var(--dark-4);
   width: 200px;
   margin: 25px;
 }
