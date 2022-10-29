@@ -68,16 +68,16 @@ function App() {
         <p className="section-title">Skills</p>
 
         <SkillCard title="HTML" 
-              image="./images/twitch.png"
+              image="./images/skills/html.png"
               animationVersion="card-animation-7"/>
         <SkillCard title="CSS" 
-              image="./images/twitch.png"
+              image="./images/skills/CSS.png"
               animationVersion="card-animation-8"/>
         <SkillCard title="JavaScript" 
-              image="./images/twitch.png"
+              image="./images/skills/JS.png"
               animationVersion="card-animation-2"/>
         <SkillCard title="React.js" 
-              image="./images/twitch.png"
+              image="logo192.png"
               animationVersion="card-animation-6"/>
         <SkillCard title="Node.js" 
               image="./images/twitch.png"
