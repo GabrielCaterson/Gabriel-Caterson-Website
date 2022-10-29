@@ -32,35 +32,41 @@ function App() {
               linkText="visit"
               image="./images/deckscalibur.png"
               imageClass="deckscalibur-image"
-              link=""/>
+              link="http://www.deckscalibur.com"/>
 
         <Card title="botZaya" 
               info="A discord bot with a variety of features including a GPT-2 based chatbot." 
               linkText="see code"
               image="./images/discord.png"
               imageClass="discord-image"
-              link=""/>
+              link="https://github.com/GabrielCaterson/talkToGabe"/>
 
         <Card title="Sentiment-Analysis" 
               info="A sentiment analysis neural network trained on the IMDB database." 
               linkText="see jupyter notebook"
               image="./images/sentiment.png"
               imageClass="sentiment-analysis-image"
-              link=""/>
+              link="https://github.com/GabrielCaterson/Sentiment-Analysis/blob/main/discord_sentiment.ipynb"/>
         
         <Card title="Chad Botro" 
               info="A twitch chatbot for the streamer Chad Potro." 
               linkText="see code"
               image="./images/twitch.png"
               imageClass="chad-botro-image"
-              link=""/>
+              link="https://github.com/GabrielCaterson/Twitch-Bot-Chad-Botro"/>
         
       </div>
 
       <section className="bottom-section">
-        <a className="bottom-link">LinkedIn</a>
-        <a className="bottom-link">Resume</a>
-        <a className="bottom-link">GitHub</a>
+        <a  className="bottom-link" 
+            href="https://www.linkedin.com/in/gabrielcaterson" 
+            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a  className="bottom-link" 
+            href=""
+            target="_blank" rel="noopener noreferrer">Resume</a>
+        <a  className="bottom-link" 
+            href="https://github.com/GabrielCaterson"
+            target="_blank" rel="noopener noreferrer">GitHub</a>
       </section>
 
     </div>
