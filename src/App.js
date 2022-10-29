@@ -6,6 +6,8 @@ import './App.css';
 
 
 import { Card } from './Components/Card.js';
+import { SkillCard } from './Components/SkillCard.js';
+
 
 
 
@@ -64,15 +66,35 @@ function App() {
 
       <section className="card-box">
         <p className="section-title">Skills</p>
-        <p>HTML</p>
-        <p>CSS</p>
-        <p>JavaScript</p>
-        <p>React</p>
-        <p>Node.js</p>
-        <p>AWS</p>
-        <p>Python</p>
-        <p>fast.ai</p>
-        <p>PyTorch</p>
+
+        <SkillCard title="HTML" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-7"/>
+        <SkillCard title="CSS" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-8"/>
+        <SkillCard title="JavaScript" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-2"/>
+        <SkillCard title="React.js" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-6"/>
+        <SkillCard title="Node.js" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-4"/>
+        <SkillCard title="AWS" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-1"/>
+        <SkillCard title="Python" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-3"/>
+        <SkillCard title="fast.ai" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-9"/>
+        <SkillCard title="PyTorch" 
+              image="./images/twitch.png"
+              animationVersion="card-animation-5"/>
+        
       </section>
 
       <section className="bottom-section">

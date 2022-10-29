@@ -15,7 +15,7 @@ export class Card extends Component {
 		return (
 			<section className="main-card-shadow-wrapper">
 				<section className={"card main-card main-card-animation " + this.props.animationVersion }>
-                    <picture className={"project-images " + this.props.imageClass }>
+                    <picture className={"project-image " + this.props.imageClass }>
                         <img    src={ this.props.image } 
                                 className={ "card-img-top "  } 
                                 alt={ this.props.title }/>
