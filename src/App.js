@@ -21,34 +21,47 @@ function App() {
       <div className="card-box">
 
         <Card title="Peripheral" 
-              info="A website that allows you to create optical illusions of motion. /n" 
+              info="A website that allows you to create optical illusions of motion." 
               linkText="visit" 
               image="./images/peripheral.png"
-              imageClass="peripheral-image"/>
+              imageClass="peripheral-image"
+              link="https://gabrielcaterson.github.io/peripheral-motion/"/>
 
         <Card title="Deckscalibur" 
               info="A website that hosts a genetic algorithm that can build decks for you for the game Clash Royale." 
               linkText="visit"
               image="./images/deckscalibur.png"
-              imageClass="deckscalibur-image"/>
+              imageClass="deckscalibur-image"
+              link=""/>
 
         <Card title="botZaya" 
               info="A discord bot with a variety of features including a GPT-2 based chatbot." 
               linkText="see code"
               image="./images/discord.png"
-              imageClass="discord-image"/>
+              imageClass="discord-image"
+              link=""/>
 
         <Card title="Sentiment-Analysis" 
               info="A sentiment analysis neural network trained on the IMDB database." 
               linkText="see jupyter notebook"
-              image="./images/sentiment.png"/>
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              link=""/>
         
         <Card title="Chad Botro" 
               info="A twitch chatbot for the streamer Chad Potro." 
               linkText="see code"
-              image="./images/twitch.png"/>
+              image="./images/twitch.png"
+              imageClass="chad-botro-image"
+              link=""/>
         
       </div>
+
+      <section className="bottom-section">
+        <a className="bottom-link">LinkedIn</a>
+        <a className="bottom-link">Resume</a>
+        <a className="bottom-link">GitHub</a>
+      </section>
 
     </div>
   );
