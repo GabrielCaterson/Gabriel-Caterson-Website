@@ -80,7 +80,8 @@ function App() {
               image="logo192.png"
               animationVersion="card-animation-6"/>
         <SkillCard title="Node.js" 
-              image="./images/twitch.png"
+              image="./images/skills/node.png"
+              imageClass="node-image"
               animationVersion="card-animation-4"/>
         <SkillCard title="AWS" 
               image="./images/twitch.png"
