@@ -84,16 +84,19 @@ function App() {
               imageClass="node-image"
               animationVersion="card-animation-4"/>
         <SkillCard title="AWS" 
-              image="./images/twitch.png"
+              image="./images/skills/aws.png"
+              imageClass="aws-image"
               animationVersion="card-animation-1"/>
         <SkillCard title="Python" 
-              image="./images/twitch.png"
+              image="./images/skills/python.png"
               animationVersion="card-animation-3"/>
         <SkillCard title="fast.ai" 
-              image="./images/twitch.png"
+              image="./images/skills/fastai.svg"
+              imageClass="fastai-image"
               animationVersion="card-animation-9"/>
         <SkillCard title="PyTorch" 
-              image="./images/twitch.png"
+              image="./images/skills/pytorch.png"
+              imageClass="pytorch-image"
               animationVersion="card-animation-5"/>
         
       </section>

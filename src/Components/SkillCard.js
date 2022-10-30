@@ -13,7 +13,7 @@ export class SkillCard extends Component {
 
 	render() {
 		return (
-			<section className="main-card-shadow-wrapper">
+			<section className="main-card-shadow-wrapper skill-card-shadow-wrapper">
 				<section className={"card main-card main-card-animation skill-card " + this.props.animationVersion }>
                     <picture className={"project-image skill-image " + this.props.imageClass }>
                         <img    src={ this.props.image } 

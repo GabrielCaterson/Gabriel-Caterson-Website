@@ -66,6 +66,14 @@
   margin: 20px;
 }
 
+.skill-card-shadow-wrapper {
+  transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  /*margin-left: -40px;
+  margin-right: -40px;*/
+  margin: -20px -50px;
+}
+
 .main-card {
   background-color: transparent;
 
@@ -114,7 +122,7 @@
 
 .main-card-animation {
   animation-name: card-wire-animation;
-  animation-duration: 15s;
+  animation-duration: 15.4s;
   animation-timing-function: ease;
   animation-delay: 3s;
   animation-iteration-count: infinite;
@@ -185,7 +193,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  zoom: 0.7;
 }
 
 .section-title {
@@ -221,6 +228,25 @@
 
 .node-image {
   border-radius: 100px;
+}
+
+.aws-image {
+  width: 55%;
+  margin: 0px;
+  margin-left: -25px;
+}
+
+.fastai-image {
+  border-radius: 0px;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 75px;
+}
+
+.pytorch-image {
+  border-radius: 0px;
+  width: 80px;
+  margin-left: -5px;
 }
 
 .card-title {
