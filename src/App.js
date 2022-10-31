@@ -20,7 +20,7 @@ function App() {
       </h1>
 
       <section className="card-box">
-        <p className="section-title">Check out some of my projects!</p>
+        <p className="section-title">Featured Projects</p>
 
         <Card title="Peripheral" 
               info="A website that allows you to create optical illusions of motion." 
