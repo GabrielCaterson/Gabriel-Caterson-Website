@@ -28,7 +28,8 @@ function App() {
               image="./images/peripheral.png"
               imageClass="peripheral-image"
               link="https://gabrielcaterson.github.io/peripheral-motion/"
-              animationVersion="card-animation-3"/>
+              animationVersion="card-animation-3"
+              skillsUsed="HTML CSS JavaScript React.js"/>
 
         <Card title="Deckscalibur" 
               info="A website that hosts a genetic algorithm that can build strong decks for the game Clash Royale." 
@@ -36,7 +37,8 @@ function App() {
               image="./images/deckscalibur.png"
               imageClass="deckscalibur-image"
               link="http://www.deckscalibur.com"
-              animationVersion="card-animation-2"/>
+              animationVersion="card-animation-2"
+              skillsUsed="HTML CSS JavaScript React.js Node.js AWS"/>
 
         <Card title="botZaya" 
               info="A discord bot with a variety of features including a GPT-2 based chatbot." 
@@ -44,15 +46,17 @@ function App() {
               image="./images/discord.png"
               imageClass="discord-image"
               link="https://github.com/GabrielCaterson/talkToGabe"
-              animationVersion="card-animation-5"/>
+              animationVersion="card-animation-5"
+              skillsUsed="JavaScript Node.js"/>
 
         <Card title="Sentiment-Analysis" 
-              info="A sentiment analysis neural network trained on the IMDB database." 
+              info="A neural network trained for sentiment analysis on the IMDB database." 
               linkText="see jupyter notebook"
               image="./images/sentiment.png"
               imageClass="sentiment-analysis-image"
               link="https://github.com/GabrielCaterson/Sentiment-Analysis/blob/main/discord_sentiment.ipynb"
-              animationVersion="card-animation-1"/>
+              animationVersion="card-animation-1"
+              skillsUsed="Python PyTorch fast.ai"/>
         
         <Card title="Chad Botro" 
               info="A twitch chatbot for the streamer Chad Potro." 
@@ -60,7 +64,8 @@ function App() {
               image="./images/twitch.png"
               imageClass="chad-botro-image"
               link="https://github.com/GabrielCaterson/Twitch-Bot-Chad-Botro"
-              animationVersion="card-animation-4"/>
+              animationVersion="card-animation-4"
+              skillsUsed="JavaScript Node.js"/>
         
       </section>
 

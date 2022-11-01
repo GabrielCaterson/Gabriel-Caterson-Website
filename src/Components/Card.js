@@ -7,12 +7,35 @@ export class Card extends Component {
 		super(props);
 
 		this.state = {
-
+            //skills: []
 		}
+
+        //this.splitSkills = this.splitSkills.bind(this);
 	}
 
+    splitSkills() {
+        if (!this.props.skillsUsed) return;
+        let skillElements = [];
+        let skillsArray = this.props.skillsUsed.split(" ");
+        
+        for (const skill of skillsArray) {
+            skillElements.push(
+                <p className="skill-text">{ skill } </p> 
+            );
+        }
+        
+        return skillElements;
+    }
+
+
+
+
+    
+
 	render() {
-		return (
+        
+
+        return (
 			<section className="main-card-shadow-wrapper">
 				<section className={"card main-card main-card-animation " + this.props.animationVersion }>
                     <picture className={"project-image " + this.props.imageClass }>
@@ -25,12 +48,18 @@ export class Card extends Component {
                         <h5 className="card-title">{ this.props.title } </h5>
                         <p className="card-text">{ this.props.info }</p>
                     </section>
+                    
+                    <section className="skill-text-box">
+                        { this.splitSkills() }
+                    </section>
 
                     <a  href={ this.props.link } 
                         className="btn btn-primary card-button" 
                         target="_blank" rel="noopener noreferrer"> 
                         { this.props.linkText }
                     </a>
+
+
 
                 </section>
 			</section>

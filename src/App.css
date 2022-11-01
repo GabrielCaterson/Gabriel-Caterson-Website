@@ -78,7 +78,7 @@
   background-color: transparent;
 
   width: 350px;
-  height: 450px;
+  height: 550px;
 
   display: flex;
   justify-content: center;
@@ -276,6 +276,26 @@
   justify-content: flex-start;
 }
 
+.skill-text-box {
+  display: flex;
+  flex-wrap:wrap;
+  align-items: flex-start;
+  justify-content: center;
+  height: 75px;
+}
+
+.skill-text {
+  background-color: rgba(0, 0, 10, 0.2);
+  border-radius: 100px;
+  margin: 4px;
+
+
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+
+}
+
 .skill-card-body {
   display: flex;
   flex-wrap:wrap;
@@ -293,6 +313,7 @@
   bottom: 20px;
   background-color: var(--gray-1);
   color: var(--gray-5);
+  margin-top: 30px;
 }
 
 .card-button:hover, .card-button:focus, .card-button:active {
