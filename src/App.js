@@ -19,17 +19,29 @@ function App() {
         Gabriel Caterson
       </h1>
 
-      <section>
-        <picture className="socials-image">
-          { /*<img src="./images/socials/GitHub.png"></img>*/ }
+      <section className="socials-box">
+        <picture className="socials-image-box">
+          <a className="socials-link" href="https://github.com/GabrielCaterson" 
+            target="_blank" rel="noopener noreferrer"></a>
+          <img src="./images/socials/GitHub.png" className="socials-image"></img>
         </picture>
-        <picture className="socials-image"></picture>
-        <picture className="socials-image"></picture>
+
+        <picture className="socials-image-box">
+          <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
+            target="_blank" rel="noopener noreferrer"></a>
+          <img src="./images/socials/LinkedIn.png" className="socials-image"></img>
+        </picture>
+
+        <picture className="socials-image-box">
+          <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
+            target="_blank" rel="noopener noreferrer"></a>
+          <img src="./images/socials/email.png" className="socials-image"></img>
+        </picture>
 
       </section>
 
       <section className="about-me">
-        I am a full stack computer programmer based in Lithia, Florida. I enjoy playing piano and reading academic philosophy papers and books on philosophy of mind, ethics, animal rights, and the future. 
+        I am a full stack computer programmer based in Lithia, Florida. I enjoy programming, playing piano, and reading academic philosophy papers and books on philosophy of mind, ethics, animal rights, and the future.
       </section>
 
       <section className="card-box">
