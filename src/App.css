@@ -46,6 +46,11 @@
   width: 100%;
 }
 
+.about-me {
+  width: max(350px, 50%);
+  font-size: 20px;
+}
+
 .App-link {
   color: #61dafb;
 }
