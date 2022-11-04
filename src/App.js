@@ -8,6 +8,7 @@ import './App.css';
 
 import { Card } from './Components/Card.js';
 import { SkillCard } from './Components/SkillCard.js';
+import { HobbyCard } from './Components/HobbyCard.js';
 
 
 
@@ -19,6 +20,8 @@ function App() {
       <h1 className="name-box">
         Gabriel Caterson
       </h1>
+
+
 
       <section className="socials-box">
         <picture className="socials-image-box">
@@ -41,9 +44,13 @@ function App() {
 
       </section>
 
+
+
       <section className="about-me">
         I am a full stack computer programmer based in Lithia, Florida. I enjoy programming, playing piano, and reading academic philosophy papers and books on philosophy of mind, ethics, animal rights, and the future.
       </section>
+
+
 
       <section className="card-box">
         <p className="section-title">Featured Projects</p>
@@ -95,6 +102,8 @@ function App() {
         
       </section>
 
+
+
       <section className="card-box">
         <p className="section-title">Skills</p>
 
@@ -131,6 +140,38 @@ function App() {
               animationVersion="card-animation-5"/>
         
       </section>
+
+
+      <section className="card-box">
+        <p className="section-title">Hobbies</p>
+
+        <HobbyCard title="Philosophy" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-9"/>
+        <HobbyCard title="Music" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-5"/>
+        <HobbyCard title="Reading" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-1"/>
+        <HobbyCard title="AI" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-7"/>
+        <HobbyCard title="Psychology" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-2"/>
+        <HobbyCard title="Programming" 
+              image="./images/sentiment.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-3"/>
+
+      </section>
+
 
       <section className="bottom-section">
         <a  className="bottom-link" 

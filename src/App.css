@@ -258,6 +258,15 @@
   justify-content: flex-start;
 }
 
+.hobby-card {
+  height: 280px;
+  width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .section-title {
   font-size: 1.5em;
   font-weight: bold;
@@ -286,7 +295,17 @@
   padding: 0px;
   border-radius: 50px 50px 0px 50px;
   overflow:hidden;
+}
 
+.hobby-image {
+  width: 150px;
+  height: 150px;
+
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .node-image {
