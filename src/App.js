@@ -146,15 +146,15 @@ function App() {
         <p className="section-title">Hobbies</p>
 
         <HobbyCard title="Philosophy" 
-              image="./images/sentiment.png"
+              image="./images/hobbies/philosophy.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-9"/>
         <HobbyCard title="Music" 
-              image="./images/sentiment.png"
-              imageClass="sentiment-analysis-image"
+              image="./images/hobbies/music.png"
+              imageClass="music-image"
               animationVersion="card-animation-5"/>
         <HobbyCard title="Reading" 
-              image="./images/sentiment.png"
+              image="./images/hobbies/reading.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-1"/>
         <HobbyCard title="AI" 
@@ -162,11 +162,11 @@ function App() {
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-7"/>
         <HobbyCard title="Psychology" 
-              image="./images/sentiment.png"
+              image="./images/hobbies/psychology.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-2"/>
         <HobbyCard title="Programming" 
-              image="./images/sentiment.png"
+              image="./images/hobbies/programming.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-3"/>
 
