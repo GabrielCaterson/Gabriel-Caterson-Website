@@ -122,6 +122,14 @@
   margin: -20px -50px;
 }
 
+.hobby-shadow-wrapper {
+  transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  /*margin-left: -40px;
+  margin-right: -40px;*/
+  margin: -40px -40px;
+}
+
 .main-card {
   background-color: transparent;
 
@@ -350,6 +358,10 @@
   flex-wrap:wrap;
   align-items: center;
   justify-content: flex-start;
+}
+
+.hobby-card-title {
+  font-size: 25px;
 }
 
 .skill-text-box {

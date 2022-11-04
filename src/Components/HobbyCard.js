@@ -16,7 +16,7 @@ export class HobbyCard extends Component {
         
 
         return (
-			<section className="main-card-shadow-wrapper">
+			<section className="main-card-shadow-wrapper hobby-shadow-wrapper">
 				<section className={"card main-card main-card-animation hobby-card " + this.props.animationVersion }>
                     <picture className={"project-image hobby-image " + this.props.imageClass }>
                         <img    src={ this.props.image } 
@@ -25,7 +25,7 @@ export class HobbyCard extends Component {
                     </picture>
 
                     <section className="card-body">
-                        <h5 className="card-title">{ this.props.title } </h5>
+                        <h5 className="card-title hobby-card-title">{ this.props.title } </h5>
                     </section>
                     
 

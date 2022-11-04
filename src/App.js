@@ -143,7 +143,7 @@ function App() {
 
 
       <section className="card-box">
-        <p className="section-title">Hobbies</p>
+        <p className="section-title">Interests</p>
 
         <HobbyCard title="Philosophy" 
               image="./images/hobbies/philosophy.png"
