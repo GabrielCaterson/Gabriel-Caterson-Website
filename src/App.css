@@ -5,6 +5,8 @@
   --gray-4: #a0a0b8;
   --gray-5: #f0f0ff;
   --lime: #3fff00;
+  --main-color-1: #3fff00;
+  --main-color-2: #3f00ff;
 
   background-color: var(--gray-1);
 }
@@ -16,6 +18,10 @@
   flex-wrap: wrap;
   text-align: center;
   background-color: var(--gray-1);
+  background-color: #ff3f00;
+
+  background: radial-gradient(ellipse at center, var(--gray-2), var(--gray-1));
+
 }
 
 .App-logo {
@@ -220,8 +226,10 @@
 }
 
 .card-box {
-  /*background-color: var(--foreground-color);*/
   background-color: var(--gray-2);
+  background: radial-gradient(ellipse at top, transparent, var(--gray-2)),
+              radial-gradient(ellipse at bottom, var(--gray-2), transparent);
+
   border-radius: 15px;
   margin: 15px;
   margin-bottom: 20px;
@@ -232,12 +240,13 @@
   padding: 10px;
   width: calc(100% - 50px);
   box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.7),
-        0 0 10px 1px rgba(0, 0, 0, 0.5);
+              0 0 10px 1px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   left: 25px;
+
 }
 
 .skill-card {

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap-5-dark-theme-main/css/mdb.dark.min.css';
 import './App.css';
+//import './FunkyColors.css';
 
 
 import { Card } from './Components/Card.js';
