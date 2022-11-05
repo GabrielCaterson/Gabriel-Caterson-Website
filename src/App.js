@@ -4,11 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap-5-dark-theme-main/css/mdb.dark.min.css';
 import './App.css';
 //import './FunkyColors.css';
+import './ParallaxTheme.css';
+
+
+
 
 
 import { Card } from './Components/Card.js';
 import { SkillCard } from './Components/SkillCard.js';
 import { HobbyCard } from './Components/HobbyCard.js';
+import { BackgroundBox } from './Components/BackgroundBox.js';
 
 
 
@@ -16,6 +21,8 @@ import { HobbyCard } from './Components/HobbyCard.js';
 function App() {
   return (
     <div className="App">
+
+      <BackgroundBox />
       
       <h1 className="name-box">
         Gabriel Caterson

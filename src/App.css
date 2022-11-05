@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: gray;
+  /*color: gray;*/
 }
 
 .name-box {
@@ -95,7 +95,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--gray-1);
 }
 
 @keyframes App-logo-spin {
