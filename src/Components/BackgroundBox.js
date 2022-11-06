@@ -24,6 +24,9 @@ export class BackgroundBox extends Component {
 			<section className="background">
                 blah
 
+				<div className="floater parallax bg"></div>
+				<div className="no-parallax floater floater-2"></div>
+
                 {/*<Parallax speed={10} className="background-image">
 					Content goes here. Parallax height grows with content height.
 				</Parallax>*/}
