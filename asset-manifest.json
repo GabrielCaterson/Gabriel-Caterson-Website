@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.79db525d.css",
-    "main.js": "/static/js/main.0505283f.js",
-    "static/js/787.ba3c91fc.chunk.js": "/static/js/787.ba3c91fc.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.79db525d.css.map": "/static/css/main.79db525d.css.map",
-    "main.0505283f.js.map": "/static/js/main.0505283f.js.map",
-    "787.ba3c91fc.chunk.js.map": "/static/js/787.ba3c91fc.chunk.js.map"
+    "main.css": "/Gabriel-Caterson-Website/static/css/main.96e91a93.css",
+    "main.js": "/Gabriel-Caterson-Website/static/js/main.1b398a02.js",
+    "static/js/787.ba3c91fc.chunk.js": "/Gabriel-Caterson-Website/static/js/787.ba3c91fc.chunk.js",
+    "static/media/logo.svg": "/Gabriel-Caterson-Website/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Gabriel-Caterson-Website/index.html",
+    "main.96e91a93.css.map": "/Gabriel-Caterson-Website/static/css/main.96e91a93.css.map",
+    "main.1b398a02.js.map": "/Gabriel-Caterson-Website/static/js/main.1b398a02.js.map",
+    "787.ba3c91fc.chunk.js.map": "/Gabriel-Caterson-Website/static/js/787.ba3c91fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.79db525d.css",
-    "static/js/main.0505283f.js"
+    "static/css/main.96e91a93.css",
+    "static/js/main.1b398a02.js"
   ]
 }
