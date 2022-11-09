@@ -59,7 +59,7 @@ function App() {
 
 
 
-      <section className="card-box">
+      <section className="card-box projects-box">
         <p className="section-title">Featured Projects</p>
 
         <Card title="Peripheral" 
@@ -149,9 +149,13 @@ function App() {
       </section>
 
 
-      <section className="card-box">
+      <section className="card-box interests-box">
         <p className="section-title">Interests</p>
-
+        
+        <HobbyCard title="Programming" 
+              image="./images/hobbies/programming.png"
+              imageClass="sentiment-analysis-image"
+              animationVersion="card-animation-3"/>
         <HobbyCard title="Philosophy" 
               image="./images/hobbies/philosophy.png"
               imageClass="sentiment-analysis-image"
@@ -172,15 +176,13 @@ function App() {
               image="./images/hobbies/psychology.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-2"/>
-        <HobbyCard title="Programming" 
-              image="./images/hobbies/programming.png"
-              imageClass="sentiment-analysis-image"
-              animationVersion="card-animation-3"/>
+        
 
       </section>
 
 
       <section className="bottom-section">
+        aoeuaoe
         <a  className="bottom-link" 
             href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer">LinkedIn</a>

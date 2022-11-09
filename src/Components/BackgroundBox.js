@@ -22,7 +22,7 @@ export class BackgroundBox extends Component {
 
         return (
 			<section className="background">
-                blah
+                
 
 				<div className="floater parallax bg"></div>
 				<div className="no-parallax floater floater-2"></div>

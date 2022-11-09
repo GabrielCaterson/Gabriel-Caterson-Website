@@ -3,6 +3,10 @@
     background: radial-gradient(ellipse at top, magenta, transparent),
     radial-gradient(ellipse at bottom, purple, red);
     background: radial-gradient(closest-side, red, magenta, green);
+
+    background: linear-gradient(217deg, rgba(0, 255, 0,1), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,0,255,1), rgba(0,255,0,0) 70.71%),
+                linear-gradient(0deg, rgba(255,0,0,1), rgba(0,0,255,0) 70.71%);
 }
 
 .card-box {
@@ -11,7 +15,37 @@
   radial-gradient(ellipse at bottom, var(--main-color-2), transparent);
 }
 
+.projects-box {
+    background: linear-gradient(217deg, rgba(238,255,0,.8), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0, 255,0, .8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(0deg, rgba(0,0,255,.6), rgba(0,0,255,0) 70.71%);
+}
+
 .skills-box {
     background: radial-gradient(ellipse at top, red, transparent),
                 radial-gradient(ellipse at bottom, var(--main-color-1), transparent);
+    
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(238, 255, 0,.8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(0deg,   rgba(255, 140, 0,.8), rgba(0,0,255,0) 70.71%);
 }
+
+.interests-box {
+    background: linear-gradient(217deg, rgba(132, 0, 255,.8), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,255,255,.8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(336deg, rgba(255,0,0,.8), rgba(0,0,255,0) 70.71%);
+}
+
+  .socials-box {
+    filter: invert(1);
+    opacity: 1;
+  
+  }
+
+  .bottom-section {
+    color: yellow;
+  }
+
+  .bottom-link {
+    color: black;
+  }
