@@ -36,16 +36,27 @@
                 linear-gradient(336deg, rgba(255,0,0,.8), rgba(0,0,255,0) 70.71%);
 }
 
-  .socials-box {
+.socials-box {
     filter: invert(1);
     opacity: 1;
-  
-  }
 
-  .bottom-section {
-    color: yellow;
-  }
+}
 
-  .bottom-link {
+.bottom-section {
+    margin: 20px;
+    margin-bottom: 40px;
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+
+    height: 25px;
+}
+
+.bottom-link:hover {
+    color: #555;
+    font-size: 17px;
+}
+
+.bottom-link {
     color: black;
-  }
+}

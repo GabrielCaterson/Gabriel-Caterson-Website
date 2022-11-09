@@ -182,14 +182,13 @@ function App() {
 
 
       <section className="bottom-section">
-        aoeuaoe
-        <a  className="bottom-link" 
+        <a  className="text-reset bottom-link" 
             href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a  className="bottom-link" 
+        <a  className="text-reset bottom-link" 
             href=""
             target="_blank" rel="noopener noreferrer">Resume</a>
-        <a  className="bottom-link" 
+        <a  className="text-reset bottom-link" 
             href="https://github.com/GabrielCaterson"
             target="_blank" rel="noopener noreferrer">GitHub</a>
       </section>
