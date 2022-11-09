@@ -2,11 +2,16 @@
 
     background: radial-gradient(ellipse at top, magenta, transparent),
     radial-gradient(ellipse at bottom, purple, red);
-    background: radial-gradient(closest-side, green, magenta, red);
+    background: radial-gradient(closest-side, red, magenta, green);
 }
 
 .card-box {
 
   background: radial-gradient(ellipse at top, var(--main-color-1), transparent),
   radial-gradient(ellipse at bottom, var(--main-color-2), transparent);
+}
+
+.skills-box {
+    background: radial-gradient(ellipse at top, red, transparent),
+                radial-gradient(ellipse at bottom, var(--main-color-1), transparent);
 }

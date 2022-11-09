@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap-5-dark-theme-main/css/mdb.dark.min.css';
 import './App.css';
-//import './FunkyColors.css';
-import './ParallaxTheme.css';
+import './FunkyColors.css';
+//import './ParallaxTheme.css';
 
 
 
@@ -111,7 +111,7 @@ function App() {
 
 
 
-      <section className="card-box">
+      <section className="card-box skills-box">
         <p className="section-title">Skills</p>
 
         <SkillCard title="HTML" 

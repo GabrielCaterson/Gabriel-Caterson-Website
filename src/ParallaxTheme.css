@@ -5,16 +5,16 @@
 
 main {
     overflow-y: auto;
-    perspective: 200px;
+    perspective: 5.5cm;
 }
 
 .App {
     background-color: transparent;
     background: radial-gradient(ellipse at center, transparent, transparent);
     z-index: -10;
-    
+
     overflow-y: auto;
-    perspective: 200px;
+    perspective: 15.5cm;
 
 }
 
@@ -41,6 +41,12 @@ main {
     align-items: center;
     justify-content: center;
     color: white;
+    perspective: 10.5cm;
+
+}
+
+.card {
+    perspective: 7.5cm;
 
 }
 
