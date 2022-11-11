@@ -60,3 +60,24 @@
 .bottom-link {
     color: black;
 }
+
+.card-button {
+    position: relative;
+    bottom: 10px;
+    background-color: var(--gray-1);
+    color: var(--gray-5);
+    margin-top: 30px;
+
+    background: linear-gradient(240deg, rgba(75,75,90,1), rgba(0,0,0,.5) 70.71%),
+                linear-gradient(120deg, rgba(100,100,115,1), rgba(0,0,0,.5) 70.71%),
+                linear-gradient(0deg,   rgba(50,50,65,1), rgba(0,0,0,.5) 70.71%);
+}
+  
+.card-button:hover, .card-button:focus, .card-button:active {
+    background-color: #3fff00;
+    color: var(--gray-2);
+
+    background: linear-gradient(240deg, rgba(75,255,0,1), rgba(75,255,0,.2) 70.71%),
+                linear-gradient(120deg, rgba(75,255,0,1), rgba(75,255,0,.2) 70.71%),
+                linear-gradient(0deg,   rgba(25,150,0,1), rgba(75,255,0,.2) 70.71%);
+}
