@@ -160,7 +160,7 @@ function App() {
               image="./images/hobbies/philosophy.png"
               imageClass="sentiment-analysis-image"
               animationVersion="card-animation-9"/>
-        <HobbyCard title="Music" 
+        <HobbyCard title="Piano" 
               image="./images/hobbies/music.png"
               imageClass="music-image"
               animationVersion="card-animation-5"/>
@@ -182,13 +182,15 @@ function App() {
 
 
       <section className="bottom-section">
-        <a  className="text-reset bottom-link" 
+        <a  className="text-reset bottom-link-text bottom-link-animation" 
             href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a  className="text-reset bottom-link" 
+
+        <a  className="text-reset bottom-link-text bottom-link-animation" 
             href=""
             target="_blank" rel="noopener noreferrer">Resume</a>
-        <a  className="text-reset bottom-link" 
+
+        <a  className="text-reset bottom-link-text bottom-link-animation" 
             href="https://github.com/GabrielCaterson"
             target="_blank" rel="noopener noreferrer">GitHub</a>
       </section>
