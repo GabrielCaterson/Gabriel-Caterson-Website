@@ -4,9 +4,9 @@
     radial-gradient(ellipse at bottom, purple, red);
     background: radial-gradient(closest-side, red, magenta, green);
 
-    background: linear-gradient(217deg, rgba(0, 255, 0,1), rgba(255,0,0,0) 70.71%),
+    background: linear-gradient(217deg, rgba(0,255,0,1), rgba(255,0,0,0) 70.71%),
                 linear-gradient(127deg, rgba(0,0,255,1), rgba(0,255,0,0) 70.71%),
-                linear-gradient(0deg, rgba(255,0,0,1), rgba(0,0,255,0) 70.71%);
+                linear-gradient(0deg,   rgba(255,0,0,1), rgba(0,0,255,0) 70.71%);
 }
 
 .card-box {

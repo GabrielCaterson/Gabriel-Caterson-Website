@@ -182,17 +182,18 @@ function App() {
 
 
       <section className="bottom-section">
-        <a  className="text-reset bottom-link-text bottom-link-animation" 
+
+        <p className="bottom-link-wrapper bottom-link-animation"><a  className="text-reset bottom-link-text" 
             href="https://www.linkedin.com/in/gabrielcaterson" 
-            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 
-        <a  className="text-reset bottom-link-text bottom-link-animation" 
+        <p className="bottom-link-wrapper"><a  className="text-reset bottom-link-text bottom-link-animation" 
             href=""
-            target="_blank" rel="noopener noreferrer">Resume</a>
+            target="_blank" rel="noopener noreferrer">Resume</a></p>
 
-        <a  className="text-reset bottom-link-text bottom-link-animation" 
+        <p className="bottom-link-wrapper"><a  className="text-reset bottom-link-text bottom-link-animation" 
             href="https://github.com/GabrielCaterson"
-            target="_blank" rel="noopener noreferrer">GitHub</a>
+            target="_blank" rel="noopener noreferrer">GitHub</a></p>
       </section>
 
     </div>
