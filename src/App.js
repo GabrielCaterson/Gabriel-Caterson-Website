@@ -115,7 +115,7 @@ function App() {
         <p className="section-title">Skills</p>
 
         <SkillCard title="HTML" 
-              image="./images/skills/html.png"
+              image="./images/skills/HTML.png"
               animationVersion="card-animation-7"/>
         <SkillCard title="CSS" 
               image="./images/skills/CSS.png"

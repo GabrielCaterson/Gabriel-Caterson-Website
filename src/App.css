@@ -112,6 +112,15 @@
   box-shadow:       0 0 5px 5px rgba(0, 0, 0, 0.1),
               inset 0 0 0px 20px rgba(0, 0, 0, 0.1);
   margin: 20px;
+
+  
+}
+
+@media (max-width: 500px) {
+  .main-card-shadow-wrapper {
+    transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  }
 }
 
 .skill-card-shadow-wrapper {

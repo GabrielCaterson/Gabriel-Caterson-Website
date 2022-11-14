@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# This is my personal website with links to some of my work.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
@@ -13,6 +13,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm run deploy`
+
+Deploys the app to GitHub Pages. After running, visit the pages settings and change the custom domain to `https://gabrielcaterson.com`.
+
 
 ### `npm test`
 
