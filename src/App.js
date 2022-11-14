@@ -23,11 +23,6 @@ function App() {
     <div className="App">
 
       <BackgroundBox />
-      
-      <h1 className="name-box">
-        Gabriel Caterson
-      </h1>
-
 
 
       <section className="socials-box">
@@ -50,6 +45,11 @@ function App() {
         </picture>
 
       </section>
+
+
+      <h1 className="name-box">
+        Gabriel Caterson
+      </h1>
 
 
 
