@@ -22,6 +22,8 @@ function App() {
   return (
     <div className="App">
 
+      <img className="background-image" src="./images/backgrounds/hex-2.jpg"></img>
+
       <BackgroundBox />
 
 
