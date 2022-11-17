@@ -1,13 +1,18 @@
+.body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
 .App {
 
-    background: radial-gradient(ellipse at top, magenta, transparent),
+    /*background: radial-gradient(ellipse at top, magenta, transparent),
     radial-gradient(ellipse at bottom, purple, red);
-    background: radial-gradient(closest-side, red, magenta, green);
+    background: radial-gradient(closest-side, red, magenta, green);*/
 
-    background: linear-gradient(217deg, rgba(0,255,0,.9), rgba(255,0,0,0) 70.71%),
-                linear-gradient(127deg, rgba(0,0,255,.9), rgba(0,255,0,0) 70.71%),
-                linear-gradient(0deg,   rgba(255,0,0,.9), rgba(0,0,255,0) 70.71%)/*,
-                url("/public/images/backgrounds/hex-2.jpg")*/;
+    background: linear-gradient(217deg, rgba(0,255,0,.99), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,0,255,.99), rgba(0,255,0,0) 70.71%),
+                linear-gradient(0deg,   rgba(255,0,0,.99), rgba(0,0,255,0) 70.71%)/*,
+                url("/public/images/backgrounds/hex-4.png")*/;
 
     background-repeat: repeat;
     background-size: 100%;
@@ -17,14 +22,15 @@
 }
 
 .background-image {
-    position: fixed;
+    flex: 1;
+    position: absolute;
     height: 100vh;
     min-height: 100vh;
     min-width: 100vw;
     top: 0;
     bottom: 0;
 
-    opacity: 0.1;
+    opacity: .05;
 
     z-index: 0;
     background-repeat: repeat;
