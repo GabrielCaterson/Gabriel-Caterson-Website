@@ -22,25 +22,25 @@ function App() {
   return (
     <div className="App">
 
-      <img className="background-image" src="./images/backgrounds/hex-4.png"></img>
+      <div className="background-image-box" ></div>
 
-      <BackgroundBox />
+      {/*<BackgroundBox />*/}
 
 
       <section className="socials-box">
-        <picture className="socials-image-box">
+        <picture className="socials-image-box fade-in">
           <a className="socials-link" href="https://github.com/GabrielCaterson" 
             target="_blank" rel="noopener noreferrer"></a>
           <img src="./images/socials/GitHub.png" className="socials-image"></img>
         </picture>
 
-        <picture className="socials-image-box">
+        <picture className="socials-image-box fade-in">
           <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer"></a>
           <img src="./images/socials/LinkedIn.png" className="socials-image"></img>
         </picture>
 
-        <picture className="socials-image-box">
+        <picture className="socials-image-box fade-in">
           <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer"></a>
           <img src="./images/socials/email.png" className="socials-image"></img>
@@ -49,20 +49,20 @@ function App() {
       </section>
 
 
-      <h1 className="name-box">
+      <h1 className="name-box fade-in">
         Gabriel Caterson
       </h1>
 
 
 
-      <section className="about-me">
+      <section className="about-me fade-in">
         I am a full stack computer programmer based in Lithia, Florida. I enjoy programming, playing piano, and reading academic philosophy papers and books on philosophy of mind, ethics, animal rights, and the future.
       </section>
 
 
 
       <section className="card-box projects-box">
-        <p className="section-title">Featured Projects</p>
+        <p className="section-title fade-in">Featured Projects</p>
 
         <Card title="Peripheral" 
               info="A website that allows you to create optical illusions of motion." 
@@ -114,7 +114,7 @@ function App() {
 
 
       <section className="card-box skills-box">
-        <p className="section-title">Skills</p>
+        <p className="section-title fade-in">Skills</p>
 
         <SkillCard title="HTML" 
               image="./images/skills/HTML.png"
@@ -152,7 +152,7 @@ function App() {
 
 
       <section className="card-box interests-box">
-        <p className="section-title">Interests</p>
+        <p className="section-title fade-in">Interests</p>
         
         <HobbyCard title="Programming" 
               image="./images/hobbies/programming.png"
@@ -183,7 +183,7 @@ function App() {
       </section>
 
 
-      <section className="bottom-section">
+      <section className="bottom-section fade-in">
 
         <p className="bottom-link-wrapper bottom-link-animation">
           <a  className="text-reset bottom-link-text" 
