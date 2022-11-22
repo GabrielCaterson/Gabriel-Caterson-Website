@@ -40,11 +40,11 @@ function App() {
           <img src="./images/socials/LinkedIn.png" className="socials-image"></img>
         </picture>
 
-        <picture className="socials-image-box fade-in">
+        {/*<picture className="socials-image-box fade-in">
           <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
             target="_blank" rel="noopener noreferrer"></a>
           <img src="./images/socials/email.png" className="socials-image"></img>
-        </picture>
+        </picture>*/}
 
       </section>
 
@@ -191,11 +191,11 @@ function App() {
               target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </p>
 
-        <p className="bottom-link-wrapper">
+        {/*<p className="bottom-link-wrapper">
           <a  className="text-reset bottom-link-text bottom-link-animation" 
               href=""
               target="_blank" rel="noopener noreferrer">Resume</a>
-        </p>
+        </p>*/}
 
         <p className="bottom-link-wrapper"><a  className="text-reset bottom-link-text bottom-link-animation" 
             href="https://github.com/GabrielCaterson"

@@ -513,16 +513,31 @@ html, body {
 
 
 .fade-in {
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-     -moz-animation: fadein 2s; /* Firefox < 16 */
-      -ms-animation: fadein 2s; /* Internet Explorer */
-       -o-animation: fadein 2s; /* Opera < 12.1 */
+  -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: fadein 4s; /* Firefox < 16 */
+      -ms-animation: fadein 4s; /* Internet Explorer */
+       -o-animation: fadein 4s; /* Opera < 12.1 */
           animation: fadein 4s;
+  
+  animation-timing-function: ease;
+  /*transition: all .5s ease-in-out;
+  transform-origin: left top;
+  animation-iteration-count: infinite;*/
+
+}
+.fade-in:target {
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { 
+    opacity: 0; 
+    transform: translateY(100px);
+    
+  }
+  to   { 
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 /* Firefox < 16 */
