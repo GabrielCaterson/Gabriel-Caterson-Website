@@ -413,6 +413,9 @@ html, body {
 }
 
 .skill-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 10, 0.2);
   border-radius: 100px;
   margin: 4px;
@@ -595,9 +598,14 @@ html, body {
 
   .socials-box {
     position: relative;
-    width: 195px;
+    /*width: 195px;*/
+    width: 0px;
+    height: 0px;
+    clip-path: none;
+    opacity: 0;
   }
   .socials-image-box {
-    margin: 2px;
+    /*margin: 2px;*/
+    margin: 0;
   }
 }
