@@ -3,8 +3,10 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap-5-dark-theme-main/css/mdb.dark.min.css';
 import './App.css';
-import './FunkyColors.css';
+//import './FunkyColors.css';
 //import './ParallaxTheme.css';
+import './MaterialGreen.css';
+
 
 
 
@@ -62,7 +64,7 @@ function App() {
 
 
       <section className="card-box projects-box">
-        <p className="section-title fade-in">Featured Projects</p>
+        <p className="section-title fade-in"><p className="section-title-background"> Featured Projects</p></p>
 
         <Card title="Peripheral" 
               info="A website that allows you to create optical illusions of motion." 
@@ -114,7 +116,7 @@ function App() {
 
 
       <section className="card-box skills-box">
-        <p className="section-title fade-in">Skills</p>
+        <p className="section-title fade-in"><p className="section-title-background"> Skills</p></p>
 
         <SkillCard title="HTML" 
               image="./images/skills/HTML.png"
@@ -152,7 +154,7 @@ function App() {
 
 
       <section className="card-box interests-box">
-        <p className="section-title fade-in">Interests</p>
+        <p className="section-title fade-in"><p className="section-title-background"> Interests</p></p>
         
         <HobbyCard title="Programming" 
               image="./images/hobbies/programming.png"

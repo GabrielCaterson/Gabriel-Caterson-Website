@@ -1,0 +1,51 @@
+:root {
+    --gray-1: #202028;
+    --gray-2: #404050;
+    --gray-3: #707085;
+    --gray-4: #a0a0b8;
+    --gray-5: #f0f0ff;
+    --lime: #3fff00;
+    --main-color-1: #76ff03;
+    --main-color-2: #3f00ff;
+  
+    background-color: var(--gray-1);
+  
+    width: 100%;
+    height: 100%;
+}
+
+.App {
+    /*color: #76ff03;*/
+}
+
+.card-box {
+    /*background: radial-gradient(ellipse at top, transparent, var(--main-color-1)),
+              radial-gradient(ellipse at bottom, var(--main-color-1), transparent);
+    background-color: var(--main-color-1);*/
+}
+
+.skill-text {
+    background-color: rgba(118, 255, 3, .7);
+    
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title-background {
+    background-color: #76ff03;
+    width: fit-content;
+    border-radius: 100px;
+    color: var(--gray-1);
+    margin-top: 10px;
+    margin-bottom: -5px;
+    padding: 0 15px 0 15px;
+}
+
+
+.bottom-link-wrapper {
+    background-color: var(--main-color-1);
+}
