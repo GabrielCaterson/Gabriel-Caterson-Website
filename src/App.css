@@ -265,9 +265,11 @@ html, body {
 }
 
 .card-box {
-  background-color: var(--gray-2);
-  background: radial-gradient(ellipse at top, transparent, var(--gray-2)),
-              radial-gradient(ellipse at bottom, var(--gray-2), transparent);
+  
+
+  background: linear-gradient(150deg, rgba(65,65,82,.5), rgba(64,64,80,0) 52.71%),
+              linear-gradient(270deg, rgba(104,104,124,.5), rgba(25,25,32,0) 50.71%),
+              linear-gradient(30deg,  rgba(72,72,90,.5), rgba(0,0,0,0) 50.71%);
 
   border-radius: 15px;
   margin: 15px;
@@ -288,6 +290,13 @@ html, body {
 
   z-index: 1;
 
+
+}
+
+.skills-box {
+  background: linear-gradient(290deg, rgba(65,65,82,.5), rgba(64,64,80,0) 52.71%),
+              linear-gradient(170deg, rgba(104,104,124,.5), rgba(25,25,32,0) 50.71%),
+              linear-gradient(50deg,  rgba(72,72,90,.5), rgba(0,0,0,0) 50.71%);
 }
 
 .skill-card {
@@ -577,7 +586,6 @@ html, body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 
 
 

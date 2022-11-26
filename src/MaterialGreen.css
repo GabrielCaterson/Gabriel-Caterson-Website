@@ -19,9 +19,8 @@
 }
 
 .card-box {
-    /*background: radial-gradient(ellipse at top, transparent, var(--main-color-1)),
-              radial-gradient(ellipse at bottom, var(--main-color-1), transparent);
-    background-color: var(--main-color-1);*/
+    /*background: radial-gradient(ellipse at top, transparent, var(--gray-2)),
+              radial-gradient(ellipse at bottom, var(--gray-2), transparent);*/
 }
 
 .skill-text {
