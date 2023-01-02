@@ -299,6 +299,12 @@ html, body {
               linear-gradient(50deg,  rgba(72,72,90,.5), rgba(0,0,0,0) 50.71%);
 }
 
+.interests-box {
+  background: linear-gradient(310deg, rgba(65,65,82,.5), rgba(64,64,80,0) 52.71%),
+              linear-gradient(185deg, rgba(104,104,124,.5), rgba(25,25,32,0) 30.71%),
+              linear-gradient(70deg,  rgba(72,72,90,.5), rgba(0,0,0,0) 50.71%);
+}
+
 .skill-card {
   height: 150px;
   width: 300px;
@@ -451,14 +457,21 @@ html, body {
 .card-button {
   position: relative;
   bottom: 10px;
-  background-color: var(--gray-1);
+  background-color: var(--gray-2);
   color: var(--gray-5);
   margin-top: 30px;
+  border: 1px groove rgba(50, 220, 0, 1);
+  border-radius: 50px;
+  transition: all .5s ease-out;
+  /*box-shadow: 0 0 5px 0 rgba(0, 0, 0, 1);*/
 }
 
 .card-button:hover, .card-button:focus, .card-button:active {
   background-color: var(--lime);
   color: var(--gray-2);
+
+  border: 1px groove rgba(220, 220, 240, 1);
+
 }
 
 
