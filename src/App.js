@@ -66,6 +66,15 @@ function App() {
       <section className="card-box projects-box">
         <p className="section-title fade-in"><p className="section-title-background"> Featured Projects</p></p>
 
+        <Card title="Kristi Caterson Website" 
+              info="An art display website for the artist Kristi Caterson." 
+              linkText="visit" 
+              image="./images/kristi-caterson.jpg"
+              imageClass="kristi-caterson-image"
+              link="https://gabrielcaterson.github.io/Kristi-Caterson-Website/"
+              animationVersion="card-animation-3"
+              skillsUsed="HTML CSS JavaScript React.js"/>
+
         <Card title="Peripheral" 
               info="A website that allows you to create optical illusions of motion." 
               linkText="visit" 
