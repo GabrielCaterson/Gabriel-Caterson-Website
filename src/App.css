@@ -106,9 +106,24 @@ html, body {
 }
 
 .socials-link {
-  position: absolute;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  z-index: 100;
+  margin-right: -40px;
+  margin-left: -20px;
+  top: 0;
+  left: 0;
+}
+
+.github-link {
+  height: 120px;
+}
+
+.socials-link-span {
   width: 100%;
-  height: 33%;
+  height: 400%;
+  z-index: 99;
 }
 
 .about-me {
@@ -264,6 +279,12 @@ html, body {
   animation-delay: 14.3s;
 }
 
+.card-animation-10 {
+  animation-delay: 5.4s;
+}
+
+
+
 .card-box {
   
 
@@ -341,7 +362,6 @@ html, body {
 }
 
 .kristi-caterson-image {
-  background-color: red;
   overflow: hidden;
 
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
