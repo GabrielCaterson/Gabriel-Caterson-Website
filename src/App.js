@@ -30,24 +30,30 @@ function App() {
 
 
                   <section className="socials-box">
+                        
+
                         <picture className="socials-image-box fade-in">
-                              <a className="socials-link github-link" href="https://github.com/GabrielCaterson" 
+                              <a className="socials-link" href="https://github.com/GabrielCaterson" 
                                     target="_blank" rel="noopener noreferrer">
-                                    <span className="socials-link-span"></span>
+                                    <img src="./images/socials/GitHub.png" className="socials-image"></img>
                               </a>
-                              <img src="./images/socials/GitHub.png" className="socials-image"></img>
+                              
                         </picture>
 
                         <picture className="socials-image-box fade-in">
                               <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
-                                    target="_blank" rel="noopener noreferrer"></a>
-                              <img src="./images/socials/LinkedIn.png" className="socials-image"></img>
+                                    target="_blank" rel="noopener noreferrer">
+                                    <img src="./images/socials/LinkedIn.png" className="socials-image"></img>
+                              </a>
+                              
                         </picture>
 
                         {/*<picture className="socials-image-box fade-in">
                               <a className="socials-link" href="https://www.linkedin.com/in/gabrielcaterson" 
-                                    target="_blank" rel="noopener noreferrer"></a>
-                              <img src="./images/socials/email.png" className="socials-image"></img>
+                                    target="_blank" rel="noopener noreferrer">
+                                    <img src="./images/socials/email.png" className="socials-image"></img>
+                              </a>
+                              
                         </picture>*/}
 
                   </section>

@@ -69,8 +69,7 @@ html, body {
   font-weight: bold;
   width: 100%;
 
-  z-index: 1;
-
+  z-index: 0;  
 }
 
 .socials-box {
@@ -109,15 +108,13 @@ html, body {
   position: relative;
   width: 60px;
   height: 60px;
-  z-index: 100;
-  margin-right: -40px;
-  margin-left: -20px;
-  top: 0;
-  left: 0;
-}
-
-.github-link {
-  height: 120px;
+  z-index: 1000;
+  margin-left: -3px;
+  margin-right: -3px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .socials-link-span {
@@ -350,15 +347,23 @@ html, body {
   width: 100%;
 }
 
+.project-image-container {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
 .project-image {
   width: 200px;
   height: 200px;
+
 
   margin-top: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .kristi-caterson-image {
@@ -437,6 +442,7 @@ html, body {
   width: 180px;
 
 }
+
 
 .card-title {
   font-weight: bold;

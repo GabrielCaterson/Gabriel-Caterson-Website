@@ -40,11 +40,13 @@ export class Card extends Component {
                                 main-card-shadow-wrapper-responsive  
                                 fade-in">
 				<section className={"card main-card main-card-responsive main-card-animation " + this.props.animationVersion }>
-                    <picture className={"project-image " + this.props.imageClass }>
-                        <img    src={ this.props.image } 
-                                className={ "card-img-top "  } 
-                                alt={ this.props.title }/>
-                    </picture>
+                    <section className="project-image-container">
+                        <picture className={"project-image " + this.props.imageClass }>
+                            <img    src={ this.props.image } 
+                                    className={ "card-img-top "  } 
+                                    alt={ this.props.title }/>
+                        </picture>
+                    </section>
 
                     <section className="card-body">
                         <h5 className="card-title">{ this.props.title } </h5>
