@@ -2,7 +2,7 @@
   "name": "gabriel-caterson",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://gabrielcaterson.github.io",
+  "homepage": "https://gabrielcaterson.github.io/#",
   "dependencies": {
     "@react-three/drei": "^9.97.6",
     "@react-three/fiber": "^8.15.16",

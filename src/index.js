@@ -9,20 +9,37 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    HashRouter,
+    createHashRouter,
+    RouterProvider
 } from "react-router-dom";
+
+
+const router = createHashRouter([
+    {
+        path: "/*",
+        element: <App />
+    },
+    {
+      path: "/starter",
+      element: <Starter />,
+    }
+]);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    
-    <Router>
-        <Routes>
+    <React.StrictMode>
+        <RouterProvider router={router} />
 
-            <Route exact path="/" element={<App />} />
-            <Route exact path="/starter" element={<Starter />} />
-            
-        </Routes>
-    </Router>
+        {/*<HashRouter>
+            <Routes>
+                <Route exact path="/" element={<App />} />
+                <Route exact path="/starter" element={<Starter />} />
+            </Routes>
+        </HashRouter>*/}
+    </React.StrictMode>
+
 );
 
 /*root.render(

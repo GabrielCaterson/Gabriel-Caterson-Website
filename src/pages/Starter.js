@@ -6,20 +6,11 @@ import '../App.css';
 //import './ParallaxTheme.css';
 import '../MaterialGreen.css';
 
-
+/*
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-
+*/
 import Spline from "@splinetool/react-spline";
-
-
-
-
-import { Card } from '../Components/Card.js';
-import { SkillCard } from '../Components/SkillCard.js';
-import { HobbyCard } from '../Components/HobbyCard.js';
-import { BackgroundBox } from '../Components/BackgroundBox.js';
-
 
 
 
