@@ -14,7 +14,7 @@ import {
     RouterProvider
 } from "react-router-dom";
 
-
+/*
 const router = createHashRouter([
     {
         path: "/*",
@@ -24,7 +24,26 @@ const router = createHashRouter([
       path: "/starter",
       element: <Starter />,
     }
-]);
+]);*/
+
+const router = createHashRouter(
+    [
+       {
+           path: "/",
+           errorElement: <App />,
+           children : [
+               {
+                   path: "/",
+                   element: <App />
+                },
+                {
+                    path: "starter",
+                    element: <Starter />
+                }
+           ]
+       }
+   ]
+);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
