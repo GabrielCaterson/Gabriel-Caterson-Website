@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import Starter from './pages/Starter.js';
 import BalloonCalculator from './pages/BalloonCalculator.js';
+import Genetic from './pages/Genetic.js';
+
 
 
 import reportWebVitals from './reportWebVitals';
@@ -33,6 +35,10 @@ const router = createHashRouter(
                 {
                     path: "balloons",
                     element: <BalloonCalculator />
+                },
+                {
+                    path: "genetic",
+                    element: <Genetic />
                 }
            ]
        }
