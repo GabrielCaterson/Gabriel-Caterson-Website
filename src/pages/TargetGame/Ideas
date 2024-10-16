@@ -1,0 +1,67 @@
+Make this a Peter's chin game.
+
+Level difficulty changes:
+
+    - Number of enemies
+        - Every 5 levels, the number of enemies increases by one.
+        - Every 7 levels, the level of one of the enemies increases by one.
+            - Leveled up enemies move faster at a speed of base speed + base speed * level * .2.
+            - Leveled up enemies have an extra ring around them for each level.
+
+        - Enemy types:
+            - Speeder
+                - Very fast, but moves with an extreme amount of momentum, and struggles to accurately target the player
+            - Bomber
+                - Drops bombs that explode after a short delay, killing the player if they are caught in the blast radius        
+            - Swarmer
+                - A bunch of little enemies that move slightly randomly so they spread out more
+    - Number of obstacles
+    - Moving obstacles
+    - Player speed
+    - Enemy speed
+
+
+Player upgrades:
+    - Click power
+    - Sidekick that targets and kills an enemy
+    - Shield that absorbs one hit
+    - Extra click per round
+    - Guider (shows direction where your click will go)
+    - 
+
+
+Make it so you can only pick from one of three upgrades. 
+You get one upgrade per 5 levels.
+
+
+
+
+
+
+
+
+
+
+
+This is a game where you click the screen and the ball bounces away from where you clicked. 
+
+You have to bounce the ball to the target within the number of clicks that the game allows. 
+
+The game gets harder every five levels. With each increase in difficulty, the number of obstacles 
+and enemies increases by one.
+
+The game starts with two enemies who chase you. 
+
+A random number of obstacles between 2 and 7 will also spawn in.
+
+The player and the enemies should never spawn on the obstacles, and the enemies should spawn at 
+least half the screen away from the player.
+
+The player's ball should lose velocity over time, and should hit zero after 3 seconds.
+
+The player should lose if they are hit by an enemy.
+
+The player wins if they hit the target before their clicks run out.
+
+The player has twice as many clicks as there are obstacles in the level.
+

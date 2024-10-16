@@ -5,6 +5,8 @@ import App from './App';
 import Starter from './pages/Starter.js';
 import BalloonCalculator from './pages/BalloonCalculator.js';
 import Genetic from './pages/Genetic.js';
+import TargetGame from './pages/TargetGame/TargetGame.js';
+
 
 
 
@@ -22,7 +24,7 @@ const router = createHashRouter(
     [
        {
            path: "/",
-           errorElement: <App />,
+           errorElement: <TargetGame />,
            children : [
                {
                    path: "/",
@@ -39,6 +41,10 @@ const router = createHashRouter(
                 {
                     path: "genetic",
                     element: <Genetic />
+                },
+                {
+                    path: "target",
+                    element: <TargetGame />
                 }
            ]
        }
