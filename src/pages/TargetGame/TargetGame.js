@@ -23,6 +23,8 @@ The player has twice as many clicks as there are obstacles in the level.
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import GameBoard from './GameBoard';
+import { polygonCollision, circlePolygonCollision } from './collisionUtils';
+import ClicksRemaining from './ClicksRemaining';
 
 const TargetGame = () => {
   const [gameSize, setGameSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -43,46 +45,84 @@ const TargetGame = () => {
   const baseEnemyCount = 2; // Always start with 2 enemies
 
   const ballRadius = 10;
-  const targetSize = 20;
+  const targetSize = 30;
   const bounceStrength = 10;
   const friction = 0.98;
   const travelDuration = 3000; // 3 seconds in milliseconds
   const enemySize = 15;
   const enemySpeed = settings.difficulty === 'easy' ? 0.5 : settings.difficulty === 'medium' ? 1 : 1.5;
 
+  const [maxClicks, setMaxClicks] = useState(0);
+
+  const isOverlapping = (pos, size, obstacles) => {
+    const ballLeft = pos.x;
+    const ballRight = pos.x + size;
+    const ballTop = pos.y;
+    const ballBottom = pos.y + size;
+
+    for (const obstacle of obstacles) {
+      const obstacleLeft = obstacle.x;
+      const obstacleRight = obstacle.x + obstacle.width;
+      const obstacleTop = obstacle.y;
+      const obstacleBottom = obstacle.y + obstacle.height;
+
+      if (
+        ballLeft < obstacleRight &&
+        ballRight > obstacleLeft &&
+        ballTop < obstacleBottom &&
+        ballBottom > obstacleTop
+      ) {
+        console.log(`Collision detected! Ball position: (${pos.x}, ${pos.y}), size: ${size}`);
+        console.log('Colliding obstacle:', obstacle);
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const generateObstacles = useCallback(() => {
-    const obstacleCount = Math.floor(Math.random() * 6) + 2; // 2 to 7 obstacles
+    const obstacleCount = Math.floor(Math.random() * 6) + 4; // 2 to 7 obstacles
     const newObstacles = [];
+
     for (let i = 0; i < obstacleCount; i++) {
       let newObstacle;
       do {
+        const x = Math.random() * (gameSize.width - 100);
+        const y = Math.random() * (gameSize.height - 100);
+        const width = Math.random() * 100 + 50;  // Random width between 50 and 150
+        const height = Math.random() * 100 + 50; // Random height between 50 and 150
+
         newObstacle = {
-          x: Math.random() * (gameSize.width - 100),
-          y: Math.random() * (gameSize.height - 100),
-          width: Math.random() * 50 + 50,
-          height: Math.random() * 50 + 50,
+          type: 'rectangle',
+          x, y,
+          width,
+          height,
+          zIndex: 2
+          
         };
-      } while (isOverlapping(newObstacle, newObstacle.width, newObstacles));
+      } while (newObstacles.some(obstacle => checkObstacleCollision(newObstacle, obstacle)));
       newObstacles.push(newObstacle);
     }
     return newObstacles;
   }, [gameSize]);
 
-  const isOverlapping = (pos, size, obstacles) => {
-    return obstacles.some(obstacle => 
-      pos.x < obstacle.x + obstacle.width &&
-      pos.x + size > obstacle.x &&
-      pos.y < obstacle.y + obstacle.height &&
-      pos.y + size > obstacle.y
+  const checkObstacleCollision = (obstacle1, obstacle2) => {
+    return (
+      obstacle1.x < obstacle2.x + obstacle2.width &&
+      obstacle1.x + obstacle1.width > obstacle2.x &&
+      obstacle1.y < obstacle2.y + obstacle2.height &&
+      obstacle1.y + obstacle1.height > obstacle2.y
     );
   };
 
   const generatePosition = useCallback((size, currentObstacles) => {
     let newPos;
+    const borderPadding = 10; // Minimum distance from the border
     do {
       newPos = {
-        x: Math.random() * (gameSize.width - size),
-        y: Math.random() * (gameSize.height - size),
+        x: Math.random() * (gameSize.width - size - 2 * borderPadding) + borderPadding,
+        y: Math.random() * (gameSize.height - size - 2 * borderPadding) + borderPadding,
       };
     } while (isOverlapping(newPos, size, currentObstacles));
     return newPos;
@@ -135,6 +175,7 @@ const TargetGame = () => {
     
     const initialObstacles = generateObstacles();
     setObstacles(initialObstacles);
+    setMaxClicks(initialObstacles.length * 2);
     setTargetPosition(generateTarget(initialObstacles));
     setBallPosition(generateBallPosition(initialObstacles));
     setEnemies(generateEnemies(settings.difficulty === 'easy' ? 1 : settings.difficulty === 'medium' ? 2 : 3, initialObstacles, { x: window.innerWidth / 2, y: window.innerHeight / 2 }));
@@ -198,57 +239,138 @@ const TargetGame = () => {
     return null;
   };
 
-  const moveEnemies = useCallback((enemies, ballPos, obstacles) => {
+  const moveEnemies = useCallback((enemies, ballPos, obstacles, time) => {
+    const borderPadding = 10;
+    const repulsionRange = enemySize * 6;
+    const attractionStrength = 1;
+    const repulsionStrength = 4;
+    const obstacleAvoidanceWeight = 1.5;
+    const trappedThreshold = enemySize * 3;
+    const stuckThreshold = 10; // Minimum movement distance in pixels
+    const stuckTime = 3000; // Time in milliseconds to consider an enemy stuck
+    const pushStrength = enemySpeed * 2; // Strength of the random push
+
     return enemies.map(enemy => {
-      const dx = ballPos.x - enemy.x;
-      const dy = ballPos.y - enemy.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      let forceX = 0;
+      let forceY = 0;
 
-      let newX = enemy.x + (dx / distance) * enemySpeed;
-      let newY = enemy.y + (dy / distance) * enemySpeed;
-
-      // Check for collision with obstacles
-      const collision = obstacles.some(obstacle => 
-        isOverlapping({ x: newX, y: newY }, enemySize, [obstacle])
-      );
-
-      if (collision) {
-        // If there's a collision, try to find a path around the obstacle
-        const possibleMoves = [
-          { x: enemy.x + enemySpeed, y: enemy.y },
-          { x: enemy.x - enemySpeed, y: enemy.y },
-          { x: enemy.x, y: enemy.y + enemySpeed },
-          { x: enemy.x, y: enemy.y - enemySpeed },
-        ];
-
-        // Filter out moves that would cause collisions
-        const validMoves = possibleMoves.filter(move => 
-          !isOverlapping(move, enemySize, obstacles)
-        );
-
-        if (validMoves.length > 0) {
-          // Choose the move that gets closest to the ball
-          const bestMove = validMoves.reduce((best, move) => {
-            const moveDist = Math.hypot(ballPos.x - move.x, ballPos.y - move.y);
-            return moveDist < best.dist ? { move, dist: moveDist } : best;
-          }, { dist: Infinity }).move;
-
-          newX = bestMove.x;
-          newY = bestMove.y;
-        } else {
-          // If no valid moves, stay in place
-          newX = enemy.x;
-          newY = enemy.y;
-        }
+      // Check if enemy is stuck
+      if (!enemy.lastPosition || !enemy.lastMoveTime) {
+        enemy.lastPosition = { x: enemy.x, y: enemy.y };
+        enemy.lastMoveTime = time;
       }
 
-      // Ensure the enemy stays within the game boundaries
-      newX = Math.max(enemySize / 2, Math.min(newX, gameSize.width - enemySize / 2));
-      newY = Math.max(enemySize / 2, Math.min(newY, gameSize.height - enemySize / 2));
+      const timeSinceLastMove = time - enemy.lastMoveTime;
+      const distanceMoved = Math.hypot(enemy.x - enemy.lastPosition.x, enemy.y - enemy.lastPosition.y);
 
-      return { x: newX, y: newY };
+      if (distanceMoved >= stuckThreshold) {
+        enemy.lastPosition = { x: enemy.x, y: enemy.y };
+        enemy.lastMoveTime = time;
+      } else if (timeSinceLastMove >= stuckTime) {
+        // Enemy is stuck, apply random push away from nearest obstacle
+        const nearestObstacle = obstacles.reduce((nearest, obstacle) => {
+          const dist = Math.hypot(
+            enemy.x - (obstacle.x + obstacle.width/2),
+            enemy.y - (obstacle.y + obstacle.height/2)
+          );
+          return dist < nearest.dist ? { obstacle, dist } : nearest;
+        }, { obstacle: null, dist: Infinity }).obstacle;
+
+        if (nearestObstacle) {
+          const pushAngle = Math.atan2(
+            enemy.y - (nearestObstacle.y + nearestObstacle.height/2),
+            enemy.x - (nearestObstacle.x + nearestObstacle.width/2)
+          ) + (Math.random() - 0.5) * Math.PI; // Add some randomness to the angle
+
+          forceX = Math.cos(pushAngle) * pushStrength;
+          forceY = Math.sin(pushAngle) * pushStrength;
+
+          enemy.lastPosition = { x: enemy.x, y: enemy.y };
+          enemy.lastMoveTime = time;
+        }
+      } else {
+        // Regular movement logic
+        const dx = ballPos.x - enemy.x;
+        const dy = ballPos.y - enemy.y;
+        const distToBall = Math.sqrt(dx * dx + dy * dy);
+        forceX += (dx / distToBall) * attractionStrength;
+        forceY += (dy / distToBall) * attractionStrength;
+
+        obstacles.forEach(obstacle => {
+          const obstacleCenter = {
+            x: obstacle.x + obstacle.width / 2,
+            y: obstacle.y + obstacle.height / 2
+          };
+          const obstacleRadius = Math.sqrt(obstacle.width * obstacle.width + obstacle.height * obstacle.height) / 2;
+          const distToObstacle = Math.hypot(enemy.x - obstacleCenter.x, enemy.y - obstacleCenter.y);
+          
+          if (distToObstacle < repulsionRange + obstacleRadius) {
+            const repulsionX = enemy.x - obstacleCenter.x;
+            const repulsionY = enemy.y - obstacleCenter.y;
+            const repulsionDist = Math.sqrt(repulsionX * repulsionX + repulsionY * repulsionY);
+            const repulsionFactor = Math.pow(1 - (repulsionDist / (repulsionRange + obstacleRadius)), 2);
+            forceX += (repulsionX / repulsionDist) * repulsionStrength * repulsionFactor;
+            forceY += (repulsionY / repulsionDist) * repulsionStrength * repulsionFactor;
+          }
+        });
+
+        forceX *= obstacleAvoidanceWeight;
+        forceY *= obstacleAvoidanceWeight;
+      }
+
+      // Normalize force vector
+      const forceMagnitude = Math.sqrt(forceX * forceX + forceY * forceY);
+      if (forceMagnitude > 0) {
+        forceX = (forceX / forceMagnitude) * enemySpeed;
+        forceY = (forceY / forceMagnitude) * enemySpeed;
+      }
+
+      let newX = enemy.x + forceX;
+      let newY = enemy.y + forceY;
+
+      // Ensure the enemy stays within the game boundaries with padding
+      newX = Math.max(borderPadding, Math.min(newX, gameSize.width - borderPadding));
+      newY = Math.max(borderPadding, Math.min(newY, gameSize.height - borderPadding));
+
+      // Final collision check and resolution
+      obstacles.forEach(obstacle => {
+        if (circleRectCollision(newX, newY, enemySize / 2, obstacle)) {
+          const resolution = resolveCircleRectCollision(newX, newY, enemySize / 2, obstacle);
+          newX = resolution.x;
+          newY = resolution.y;
+        }
+      });
+
+      return { ...enemy, x: newX, y: newY };
     });
-  }, [gameSize]);
+  }, [gameSize, enemySize, enemySpeed]);
+
+  // Helper function to check collision between a circle and a rectangle
+  const circleRectCollision = (circleX, circleY, circleRadius, rect) => {
+    const closestX = Math.max(rect.x, Math.min(circleX, rect.x + rect.width));
+    const closestY = Math.max(rect.y, Math.min(circleY, rect.y + rect.height));
+    const distanceX = circleX - closestX;
+    const distanceY = circleY - closestY;
+    const distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+    return distanceSquared < (circleRadius * circleRadius);
+  };
+
+  // Helper function to resolve collision between a circle and a rectangle
+  const resolveCircleRectCollision = (circleX, circleY, circleRadius, rect) => {
+    const closestX = Math.max(rect.x, Math.min(circleX, rect.x + rect.width));
+    const closestY = Math.max(rect.y, Math.min(circleY, rect.y + rect.height));
+    const distanceX = circleX - closestX;
+    const distanceY = circleY - closestY;
+    const distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+    
+    if (distance < circleRadius) {
+      const pushX = (distanceX / distance) * (circleRadius - distance);
+      const pushY = (distanceY / distance) * (circleRadius - distance);
+      return { x: circleX + pushX, y: circleY + pushY };
+    }
+    
+    return { x: circleX, y: circleY };
+  };
 
   const checkEnemyCollision = useCallback((ballPos, enemies) => {
     return enemies.some(enemy => 
@@ -273,8 +395,11 @@ const TargetGame = () => {
     }
     const newObstacles = generateObstacles();
     setObstacles(newObstacles);
-    setTargetPosition(generateTarget(newObstacles));
+    setMaxClicks(newObstacles.length * 2);
     setClickCount(0);
+    
+    // Set new target position
+    setTargetPosition(generateTarget(newObstacles));
     
     // Respawn enemies at new locations with updated count
     const enemyCount = calculateEnemyCount();
@@ -289,7 +414,7 @@ const TargetGame = () => {
     if (gameOver || settings.isOpen) return;
 
     // Move enemies continuously
-    setEnemies(currentEnemies => moveEnemies(currentEnemies, ballPosition, obstacles));
+    setEnemies(currentEnemies => moveEnemies(currentEnemies, ballPosition, obstacles, Date.now()));
 
     setBallPosition(pos => {
       const timeSinceClick = Date.now() - lastClickTime.current;
@@ -346,7 +471,12 @@ const TargetGame = () => {
       setGameOver(true);
     }
 
-  }, [targetPosition, obstacles, gameSize, clickCount, generateObstacles, generateTarget, generateEnemies, moveEnemies, settings.difficulty, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit]);
+    // Check if clicks remaining is zero
+    if (clickCount >= maxClicks) {
+      setGameOver(true);
+    }
+
+  }, [targetPosition, obstacles, gameSize, clickCount, generateObstacles, generateTarget, generateEnemies, moveEnemies, settings.difficulty, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit, maxClicks]);
 
   useEffect(() => {
     const gameLoop = setInterval(updateGame, 16); // ~60 FPS
@@ -367,6 +497,7 @@ const TargetGame = () => {
     ));
     setClickCount(0);
     setGameOver(false);
+    setMaxClicks(initialObstacles.length * 2); // Reset maxClicks
   }, [generateObstacles, generateBallPosition, generateTarget, generateEnemies]);
 
   const toggleSettings = () => {
@@ -377,8 +508,28 @@ const TargetGame = () => {
     setSettings(s => ({ ...s, [key]: value }));
   };
 
+  const moveBall = (dx, dy) => {
+    setBallPosition(prevBall => {
+      const newPos = {
+        x: prevBall.x + dx,
+        y: prevBall.y + dy
+      };
+
+      console.log(`Attempting to move ball to (${newPos.x}, ${newPos.y})`);
+      
+      if (isOverlapping(newPos, ballRadius * 2, obstacles)) {
+        console.log('Movement prevented due to collision');
+        return prevBall;
+      }
+
+      console.log('Ball moved successfully');
+      return newPos;
+    });
+  };
+
   return (
-    <div className="game-container w-screen h-screen overflow-hidden relative" onClick={handleClick}>
+    <div className="game-container w-screen h-screen overflow-hidden relative bg-white select-none" onClick={handleClick}>
+      <div className="background absolute inset-0 bg-white z-[-10]"></div>
       <GameBoard
         gameSize={gameSize}
         ballPosition={ballPosition}
@@ -389,17 +540,18 @@ const TargetGame = () => {
         enemies={enemies}
         enemySize={enemySize}
       />
-      <div className="score absolute top-2 left-2 text-2xl font-bold text-slate-700">
+      <div className="score absolute top-2 left-2 text-2xl font-bold text-slate-700 z-10 pointer-events-none user-select-none">
         <p>Level: {level}</p>
         <p>Best Level: {highScore}</p>
-        <p>Clicks: {clickCount}</p>
-        <p>Enemies: {calculateEnemyCount()}</p>
       </div>
       {gameOver && (
-        <div className="game-over absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl font-bold text-red-600 text-center">
-          <p>Game Over!</p>
+        <div className="game-over absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl font-bold text-red-600 text-center z-20">
+          <p className="pointer-events-none user-select-none">Game Over!</p>
+          <p className="text-2xl mt-2 pointer-events-none user-select-none">
+            {clickCount >= maxClicks ? "You ran out of clicks!" : "You were caught by an enemy!"}
+          </p>
           <button 
-            onClick={restartGame} 
+            onClick={(e) => { e.stopPropagation(); restartGame(); }}
             className="mt-5 px-5 py-2 text-2xl bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
           >
             Restart
@@ -407,13 +559,13 @@ const TargetGame = () => {
         </div>
       )}
       <button 
-        className="settings-button absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded"
+        className="settings-button absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded z-20"
         onClick={(e) => { e.stopPropagation(); toggleSettings(); }}
       >
         Settings
       </button>
       {settings.isOpen && (
-        <div className="settings-menu absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg text-slate-700">
+        <div className="settings-menu absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg text-slate-700 z-20">
           <h2 className="text-2xl font-bold mb-4">Settings</h2>
           <div className="mb-4">
             <label className="block mb-2">
@@ -446,6 +598,7 @@ const TargetGame = () => {
           </button>
         </div>
       )}
+      <ClicksRemaining clicksLeft={maxClicks - clickCount} />
     </div>
   );
 };

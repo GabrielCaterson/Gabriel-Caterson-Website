@@ -8,7 +8,8 @@ const Enemy = ({ position, size }) => {
         left: position.x - size / 2, 
         top: position.y - size / 2, 
         width: size, 
-        height: size 
+        height: size,
+        zIndex: 2
       }} 
     />
   );

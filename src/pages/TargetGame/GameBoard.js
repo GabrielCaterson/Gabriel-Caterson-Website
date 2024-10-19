@@ -1,43 +1,72 @@
 import React from 'react';
-import Ball from './Ball';
-import Enemy from './Enemy';
-import Obstacle from './Obstacle';
-import Target from './Target';
 
-const GameBoard = ({ 
-  gameSize, 
-  ballPosition, 
-  ballRadius, 
-  targetPosition, 
-  targetSize, 
-  obstacles, 
-  enemies, 
-  handleClick 
-}) => {
+const GameBoard = ({ gameSize, ballPosition, ballRadius, targetPosition, targetSize, obstacles, enemies, enemySize }) => {
   return (
-    <div 
-      className="game-board w-full h-full overflow-hidden relative bg-gray-100 cursor-pointer" 
-      onClick={handleClick}
-      style={{ width: gameSize.width, height: gameSize.height }}
-    >
-      <Ball position={ballPosition} radius={ballRadius} />
-      <Target position={targetPosition} size={targetSize} />
-      {obstacles.map((obstacle, index) => (
-        <Obstacle
-          key={index}
-          position={{ x: obstacle.x, y: obstacle.y }}
-          width={obstacle.width}
-          height={obstacle.height}
-        />
-      ))}
+    <svg width={gameSize.width} height={gameSize.height}>
+      {/* Render obstacles */}
+      {obstacles.map((obstacle, index) => {
+        switch (obstacle.type) {
+          case 'rectangle':
+            return (
+              <rect
+                key={index}
+                x={obstacle.x}
+                y={obstacle.y}
+                width={obstacle.width}
+                height={obstacle.height}
+                fill="gray"
+              />
+            );
+          case 'circle':
+            return (
+              <circle
+                key={index}
+                cx={obstacle.x}
+                cy={obstacle.y}
+                r={obstacle.radius}
+                fill="gray"
+              />
+            );
+          case 'polygon':
+            return (
+              <polygon
+                key={index}
+                points={obstacle.points.map(p => `${p.x},${p.y}`).join(' ')}
+                fill="gray"
+              />
+            );
+          default:
+            return null;
+        }
+      })}
+
+      {/* Render target */}
+      <circle
+        cx={targetPosition.x}
+        cy={targetPosition.y}
+        r={targetSize / 2}
+        fill="green"
+      />
+
+      {/* Render ball */}
+      <circle
+        cx={ballPosition.x}
+        cy={ballPosition.y}
+        r={ballRadius}
+        fill="blue"
+      />
+
+      {/* Render enemies */}
       {enemies.map((enemy, index) => (
-        <Enemy
+        <circle
           key={index}
-          position={enemy}
-          size={15} // Assuming enemy size is 15
+          cx={enemy.x}
+          cy={enemy.y}
+          r={enemySize / 2}
+          fill="red"
         />
       ))}
-    </div>
+    </svg>
   );
 };
 

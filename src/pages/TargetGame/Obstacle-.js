@@ -8,7 +8,8 @@ const Obstacle = ({ position, width, height }) => {
         left: position.x, 
         top: position.y, 
         width: width, 
-        height: height 
+        height: height,
+        zIndex: 2,
       }} 
     />
   );
