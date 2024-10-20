@@ -22,9 +22,9 @@ The player has twice as many clicks as there are obstacles in the level.
 */
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import GameBoard from './GameBoard';
 import { polygonCollision, circlePolygonCollision } from './collisionUtils';
 import ClicksRemaining from './ClicksRemaining';
+import GameBoard from './GameBoard';
 import Cookies from 'js-cookie';
 
 const TargetGame = () => {
@@ -96,36 +96,56 @@ const TargetGame = () => {
   const generateObstacles = useCallback(() => {
     const obstacleCount = Math.floor(Math.random() * 6) + 2; // 2 to 7 obstacles
     const newObstacles = [];
+    const minDistance = ballRadius * 3; // 1.5x the width (diameter) of the ball
 
     for (let i = 0; i < obstacleCount; i++) {
       let newObstacle;
+      let attempts = 0;
+      const maxAttempts = 100; // Prevent infinite loop
+
       do {
         const x = Math.random() * (gameSize.width - 100);
         const y = Math.random() * (gameSize.height - 100);
         const width = Math.random() * 100 + 50;  // Random width between 50 and 150
         const height = Math.random() * 100 + 50; // Random height between 50 and 150
+        const isRounded = Math.random() < 0.5; // 50% chance of being rounded
 
         newObstacle = {
           type: 'rectangle',
           x, y,
           width,
           height,
-          zIndex: 2
-          
+          zIndex: 20,
+          isRounded
         };
-      } while (newObstacles.some(obstacle => checkObstacleCollision(newObstacle, obstacle)));
-      newObstacles.push(newObstacle);
+
+        attempts++;
+        if (attempts >= maxAttempts) {
+          console.warn('Max attempts reached for obstacle generation. Skipping this obstacle.');
+          break;
+        }
+      } while (newObstacles.some(obstacle => checkObstacleCollision(newObstacle, obstacle, minDistance)));
+
+      if (attempts < maxAttempts) {
+        newObstacles.push(newObstacle);
+      }
     }
     return newObstacles;
-  }, [gameSize]);
+  }, [gameSize, ballRadius]);
 
-  const checkObstacleCollision = (obstacle1, obstacle2) => {
-    return (
-      obstacle1.x < obstacle2.x + obstacle2.width &&
-      obstacle1.x + obstacle1.width > obstacle2.x &&
-      obstacle1.y < obstacle2.y + obstacle2.height &&
-      obstacle1.y + obstacle1.height > obstacle2.y
-    );
+  const checkObstacleCollision = (obstacle1, obstacle2, minDistance) => {
+    const centerX1 = obstacle1.x + obstacle1.width / 2;
+    const centerY1 = obstacle1.y + obstacle1.height / 2;
+    const centerX2 = obstacle2.x + obstacle2.width / 2;
+    const centerY2 = obstacle2.y + obstacle2.height / 2;
+
+    const distanceX = Math.abs(centerX1 - centerX2);
+    const distanceY = Math.abs(centerY1 - centerY2);
+
+    const minDistanceX = (obstacle1.width + obstacle2.width) / 2 + minDistance;
+    const minDistanceY = (obstacle1.height + obstacle2.height) / 2 + minDistance;
+
+    return distanceX < minDistanceX && distanceY < minDistanceY;
   };
 
   const generatePosition = useCallback((size, currentObstacles) => {
@@ -569,6 +589,7 @@ const TargetGame = () => {
   return (
     <div className="game-container w-screen h-screen overflow-hidden relative bg-white select-none" onClick={handleClick}>
       <div className="background absolute inset-0 bg-white z-[-10]"></div>
+      <ClicksRemaining clicksLeft={maxClicks - clickCount} />
       <GameBoard
         gameSize={gameSize}
         ballPosition={ballPosition}
@@ -637,7 +658,6 @@ const TargetGame = () => {
           </button>
         </div>
       )}
-      <ClicksRemaining clicksLeft={maxClicks - clickCount} />
       {!cookieConsent && (
         <div className="cookie-consent absolute bottom-0 left-0 right-0 bg-gray-800 text-white p-4 text-center">
           <p className="mb-2">This site uses cookies to save your high score. Do you consent to the use of cookies?</p>

@@ -22,7 +22,7 @@ const ClicksRemaining = ({ clicksLeft }) => {
     transform: 'translate(-50%, -50%)',
     fontSize: fontSize,
     fontWeight: 'bold',
-    color: 'rgba(211, 211, 211, 0.4)', // Light gray with 50% opacity
+    color: 'rgba(211, 211, 211, 0.3)', // Light gray with 50% opacity
     fontFamily: 'Arial, sans-serif',
     zIndex: 0, // Place it above the background but below other game elements
     userSelect: 'none', // Prevent text selection

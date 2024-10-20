@@ -1,72 +1,30 @@
 import React from 'react';
+import Ball from './Ball';
+import Enemy from './Enemy';
+import Target from './Target';
+import Obstacle from './Obstacle';
 
 const GameBoard = ({ gameSize, ballPosition, ballRadius, targetPosition, targetSize, obstacles, enemies, enemySize }) => {
   return (
-    <svg width={gameSize.width} height={gameSize.height}>
-      {/* Render obstacles */}
-      {obstacles.map((obstacle, index) => {
-        switch (obstacle.type) {
-          case 'rectangle':
-            return (
-              <rect
-                key={index}
-                x={obstacle.x}
-                y={obstacle.y}
-                width={obstacle.width}
-                height={obstacle.height}
-                fill="gray"
-              />
-            );
-          case 'circle':
-            return (
-              <circle
-                key={index}
-                cx={obstacle.x}
-                cy={obstacle.y}
-                r={obstacle.radius}
-                fill="gray"
-              />
-            );
-          case 'polygon':
-            return (
-              <polygon
-                key={index}
-                points={obstacle.points.map(p => `${p.x},${p.y}`).join(' ')}
-                fill="gray"
-              />
-            );
-          default:
-            return null;
-        }
-      })}
-
-      {/* Render target */}
-      <circle
-        cx={targetPosition.x}
-        cy={targetPosition.y}
-        r={targetSize / 2}
-        fill="green"
-      />
-
-      {/* Render ball */}
-      <circle
-        cx={ballPosition.x}
-        cy={ballPosition.y}
-        r={ballRadius}
-        fill="blue"
-      />
-
-      {/* Render enemies */}
+    <div style={{ width: gameSize.width, height: gameSize.height, position: 'relative' }}>
+      <Target position={targetPosition} size={targetSize} />
+      
       {enemies.map((enemy, index) => (
-        <circle
+        <Enemy key={index} position={enemy} size={enemySize} />
+      ))}
+      
+      <Ball position={ballPosition} radius={ballRadius} />
+      
+      {obstacles.map((obstacle, index) => (
+        <Obstacle
           key={index}
-          cx={enemy.x}
-          cy={enemy.y}
-          r={enemySize / 2}
-          fill="red"
+          position={{ x: obstacle.x, y: obstacle.y }}
+          width={obstacle.width}
+          height={obstacle.height}
+          isRounded={obstacle.isRounded} // Pass the isRounded property
         />
       ))}
-    </svg>
+    </div>
   );
 };
 
