@@ -57,6 +57,9 @@ const TargetGame = () => {
 
   const [cookieConsent, setCookieConsent] = useState(false);
 
+  const [isBallMoving, setIsBallMoving] = useState(false);
+  const [isLastClick, setIsLastClick] = useState(false);
+
   useEffect(() => {
     const savedHighScore = Cookies.get('highScore');
     if (savedHighScore) {
@@ -216,13 +219,12 @@ const TargetGame = () => {
   }, [generateObstacles, generateTarget, generateBallPosition, generateEnemies, settings.difficulty]);
 
   const handleClick = useCallback((e) => {
-    if (gameOver || settings.isOpen) return;
+    if (gameOver || settings.isOpen || clickCount >= maxClicks) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    // Remove the check for clicking on the scoreboard area
     const deltaX = settings.clickTowards ? clickX - ballPosition.x : ballPosition.x - clickX;
     const deltaY = settings.clickTowards ? clickY - ballPosition.y : ballPosition.y - clickY;
     const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -234,7 +236,13 @@ const TargetGame = () => {
     initialVelocity.current = { x: newVelocityX, y: newVelocityY };
     setClickCount(count => count + 1);
     lastClickTime.current = Date.now();
-  }, [ballPosition, gameOver, settings.isOpen, settings.clickTowards]);
+    setIsBallMoving(true);
+
+    // Check if this is the last click
+    if (clickCount + 1 >= maxClicks) {
+      setIsLastClick(true);
+    }
+  }, [ballPosition, gameOver, settings.isOpen, settings.clickTowards, clickCount, maxClicks]);
 
   const resolveCollision = (pos, vel, obstaclePos, obstacleSize) => {
     const center = { x: pos.x, y: pos.y };
@@ -471,8 +479,8 @@ const TargetGame = () => {
       return newLevel;
     });
 
-    initializeRound();
-  }, [initializeRound, cookieConsent]);
+    // Remove initializeRound() from here
+  }, [cookieConsent]);
 
   const updateGame = useCallback(() => {
     if (gameOver || settings.isOpen) return;
@@ -483,6 +491,12 @@ const TargetGame = () => {
     setBallPosition(pos => {
       const timeSinceClick = Date.now() - lastClickTime.current;
       if (timeSinceClick >= travelDuration) {
+        if (isBallMoving) {
+          setIsBallMoving(false);
+          if (isLastClick) {
+            checkGameOutcome();
+          }
+        }
         return pos; // Stop moving after 3 seconds
       }
 
@@ -525,6 +539,7 @@ const TargetGame = () => {
         Math.abs(newY - targetPosition.y) < (ballRadius + targetSize / 2)
       ) {
         handleTargetHit();
+        initializeRound(); // Move initializeRound() here
       }
 
       return { x: newX, y: newY };
@@ -535,12 +550,8 @@ const TargetGame = () => {
       setGameOver(true);
     }
 
-    // Check if clicks remaining is zero
-    if (clickCount >= maxClicks) {
-      setGameOver(true);
-    }
-
-  }, [targetPosition, obstacles, gameSize, clickCount, generateObstacles, generateTarget, generateEnemies, moveEnemies, settings.difficulty, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit, maxClicks]);
+    // Remove the check for clicks remaining here
+  }, [targetPosition, obstacles, gameSize, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit, initializeRound]);
 
   useEffect(() => {
     const gameLoop = setInterval(updateGame, 16); // ~60 FPS
@@ -549,8 +560,11 @@ const TargetGame = () => {
 
   const restartGame = useCallback(() => {
     setLevel(1);
+    setGameOver(false); // Make sure to reset gameOver state
+    setBallVelocity({ x: 0, y: 0 }); // Reset ball velocity
+    setIsBallMoving(false); // Reset ball movement state
+    setIsLastClick(false); // Reset last click state
     initializeRound();
-    setGameOver(false);
   }, [initializeRound]);
 
   const toggleSettings = () => {
@@ -585,6 +599,18 @@ const TargetGame = () => {
     Cookies.set('cookieConsent', 'true', { expires: 365 });
     Cookies.set('highScore', highScore, { expires: 365 });
   };
+
+  const checkGameOutcome = useCallback(() => {
+    const hitTarget = 
+      Math.abs(ballPosition.x - targetPosition.x) < (ballRadius + targetSize / 2) &&
+      Math.abs(ballPosition.y - targetPosition.y) < (ballRadius + targetSize / 2);
+
+    if (hitTarget) {
+      handleTargetHit();
+    } else {
+      setGameOver(true);
+    }
+  }, [ballPosition, targetPosition, ballRadius, targetSize, handleTargetHit]);
 
   return (
     <div className="game-container w-screen h-screen overflow-hidden relative bg-white select-none" onClick={handleClick}>

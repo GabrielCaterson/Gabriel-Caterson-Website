@@ -24,12 +24,13 @@ const Enemy = ({ position, size }) => {
       />
       {/* Inner enemy circle */}
       <div 
-        className="absolute rounded-full bg-red-500"
+        className="absolute rounded-full bg-red-500 animate-spin"
         style={{ 
-          left: '10%', // Center the inner circle within the outer circle
-          top: '10%',
-          width: '80%', // Make the inner circle fit within the outer circle
-          height: '80%'
+          left: '5%', // Center the inner circle within the outer circle
+          top: '5%',
+          width: '90%', // Make the inner circle fit within the outer circle
+          height: '90%',
+          animation: 'spin 7s infinite linear'
         }} 
       />
     </div>
