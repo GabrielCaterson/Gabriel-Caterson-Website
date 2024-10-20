@@ -60,6 +60,8 @@ const TargetGame = () => {
   const [isBallMoving, setIsBallMoving] = useState(false);
   const [isLastClick, setIsLastClick] = useState(false);
 
+  const targetHitRef = useRef(false); // Add this ref
+
   useEffect(() => {
     const savedHighScore = Cookies.get('highScore');
     if (savedHighScore) {
@@ -429,6 +431,8 @@ const TargetGame = () => {
   }, []);
 
   const initializeRound = useCallback(() => {
+    targetHitRef.current = false; // Reset the hit ref
+
     const initialObstacles = generateObstacles();
     setObstacles(initialObstacles);
     setMaxClicks(initialObstacles.length * 2);
@@ -467,6 +471,9 @@ const TargetGame = () => {
   }, [initializeRound]);
 
   const handleTargetHit = useCallback(() => {
+    if (targetHitRef.current) return; // Prevent multiple hits
+    targetHitRef.current = true; // Mark as hit
+
     setLevel(currentLevel => {
       const newLevel = currentLevel + 1;
       setHighScore(prevHighScore => {
@@ -476,11 +483,15 @@ const TargetGame = () => {
         }
         return newHighScore;
       });
+      
+      // Use setTimeout to ensure this runs after the state updates
+      setTimeout(() => {
+        initializeRound();
+      }, 0);
+      
       return newLevel;
     });
-
-    // Remove initializeRound() from here
-  }, [cookieConsent]);
+  }, [cookieConsent, initializeRound]);
 
   const updateGame = useCallback(() => {
     if (gameOver || settings.isOpen) return;
@@ -539,7 +550,6 @@ const TargetGame = () => {
         Math.abs(newY - targetPosition.y) < (ballRadius + targetSize / 2)
       ) {
         handleTargetHit();
-        initializeRound(); // Move initializeRound() here
       }
 
       return { x: newX, y: newY };
@@ -551,7 +561,7 @@ const TargetGame = () => {
     }
 
     // Remove the check for clicks remaining here
-  }, [targetPosition, obstacles, gameSize, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit, initializeRound]);
+  }, [targetPosition, obstacles, gameSize, gameOver, settings.isOpen, ballPosition, enemies, handleTargetHit, initializeRound, isBallMoving, isLastClick, moveEnemies, checkEnemyCollision]);
 
   useEffect(() => {
     const gameLoop = setInterval(updateGame, 16); // ~60 FPS
@@ -559,6 +569,7 @@ const TargetGame = () => {
   }, [updateGame]);
 
   const restartGame = useCallback(() => {
+    targetHitRef.current = false; // Reset the hit ref
     setLevel(1);
     setGameOver(false); // Make sure to reset gameOver state
     setBallVelocity({ x: 0, y: 0 }); // Reset ball velocity
