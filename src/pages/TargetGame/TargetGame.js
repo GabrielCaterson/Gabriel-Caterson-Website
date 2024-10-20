@@ -632,7 +632,7 @@ const TargetGame = () => {
       </div>
       {gameOver && (
         <div className="game-over absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl font-bold text-red-600 text-center z-20">
-          <p className="pointer-events-none user-select-none">Game Over!</p>
+          <p className="pointer-events-none user-select-none drop-shadow-[0_0.4px_2.10px_rgba(255,255,255,0.99)]">Game Over!</p>
           <p className="text-2xl mt-2 pointer-events-none user-select-none">
             {clickCount >= maxClicks ? "You ran out of clicks!" : "You were caught by an enemy!"}
           </p>
