@@ -25,6 +25,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import GameBoard from './GameBoard';
 import { polygonCollision, circlePolygonCollision } from './collisionUtils';
 import ClicksRemaining from './ClicksRemaining';
+import Cookies from 'js-cookie';
 
 const TargetGame = () => {
   const [gameSize, setGameSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -54,6 +55,17 @@ const TargetGame = () => {
 
   const [maxClicks, setMaxClicks] = useState(0);
 
+  const [cookieConsent, setCookieConsent] = useState(false);
+
+  useEffect(() => {
+    const savedHighScore = Cookies.get('highScore');
+    if (savedHighScore) {
+      setHighScore(parseInt(savedHighScore, 10));
+    }
+    const hasConsent = Cookies.get('cookieConsent');
+    setCookieConsent(hasConsent === 'true');
+  }, []);
+
   const isOverlapping = (pos, size, obstacles) => {
     const ballLeft = pos.x;
     const ballRight = pos.x + size;
@@ -82,7 +94,7 @@ const TargetGame = () => {
   };
 
   const generateObstacles = useCallback(() => {
-    const obstacleCount = Math.floor(Math.random() * 6) + 4; // 2 to 7 obstacles
+    const obstacleCount = Math.floor(Math.random() * 6) + 2; // 2 to 7 obstacles
     const newObstacles = [];
 
     for (let i = 0; i < obstacleCount; i++) {
@@ -383,32 +395,64 @@ const TargetGame = () => {
     return baseEnemyCount + levelBonus;
   }, [level]);
 
-  const handleTargetHit = useCallback(() => {
-    if (clickCount <= obstacles.length * 2) {
-      setLevel(currentLevel => {
-        const newLevel = currentLevel + 1;
-        setHighScore(hs => Math.max(hs, newLevel));
-        return newLevel;
-      });
-    } else {
-      setLevel(1);
-    }
-    const newObstacles = generateObstacles();
-    setObstacles(newObstacles);
-    setMaxClicks(newObstacles.length * 2);
+  const isInTopLeftCorner = useCallback((pos) => {
+    const cornerThreshold = 50; // Adjust this value as needed
+    return pos.x < cornerThreshold && pos.y < cornerThreshold;
+  }, []);
+
+  const initializeRound = useCallback(() => {
+    const initialObstacles = generateObstacles();
+    setObstacles(initialObstacles);
+    setMaxClicks(initialObstacles.length * 2);
+
+    let newBallPosition, newTargetPosition, newEnemies;
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    do {
+      newBallPosition = generateBallPosition(initialObstacles);
+      newTargetPosition = generateTarget(initialObstacles);
+      newEnemies = generateEnemies(
+        calculateEnemyCount(),
+        initialObstacles,
+        newBallPosition
+      );
+
+      attempts++;
+      if (attempts >= maxAttempts) {
+        console.warn('Max attempts reached. Proceeding with current positions.');
+        break;
+      }
+    } while (
+      isInTopLeftCorner(newBallPosition) ||
+      newEnemies.some(enemy => isInTopLeftCorner(enemy))
+    );
+
+    setBallPosition(newBallPosition);
+    setTargetPosition(newTargetPosition);
+    setEnemies(newEnemies);
     setClickCount(0);
-    
-    // Set new target position
-    setTargetPosition(generateTarget(newObstacles));
-    
-    // Respawn enemies at new locations with updated count
-    const enemyCount = calculateEnemyCount();
-    setEnemies(generateEnemies(
-      enemyCount,
-      newObstacles,
-      ballPosition
-    ));
-  }, [clickCount, obstacles.length, generateObstacles, generateTarget, generateEnemies, calculateEnemyCount, ballPosition]);
+  }, [generateObstacles, generateBallPosition, generateTarget, generateEnemies, calculateEnemyCount, isInTopLeftCorner]);
+
+  useEffect(() => {
+    initializeRound();
+  }, [initializeRound]);
+
+  const handleTargetHit = useCallback(() => {
+    setLevel(currentLevel => {
+      const newLevel = currentLevel + 1;
+      setHighScore(prevHighScore => {
+        const newHighScore = Math.max(prevHighScore, newLevel);
+        if (cookieConsent) {
+          Cookies.set('highScore', newHighScore.toString(), { expires: 365 });
+        }
+        return newHighScore;
+      });
+      return newLevel;
+    });
+
+    initializeRound();
+  }, [initializeRound, cookieConsent]);
 
   const updateGame = useCallback(() => {
     if (gameOver || settings.isOpen) return;
@@ -484,21 +528,10 @@ const TargetGame = () => {
   }, [updateGame]);
 
   const restartGame = useCallback(() => {
-    const initialObstacles = generateObstacles();
-    setObstacles(initialObstacles);
-    const newBallPosition = generateBallPosition(initialObstacles);
-    setBallPosition(newBallPosition);
-    setTargetPosition(generateTarget(initialObstacles));
     setLevel(1);
-    setEnemies(generateEnemies(
-      baseEnemyCount, // Always start with base enemy count when restarting
-      initialObstacles,
-      newBallPosition
-    ));
-    setClickCount(0);
+    initializeRound();
     setGameOver(false);
-    setMaxClicks(initialObstacles.length * 2); // Reset maxClicks
-  }, [generateObstacles, generateBallPosition, generateTarget, generateEnemies]);
+  }, [initializeRound]);
 
   const toggleSettings = () => {
     setSettings(s => ({ ...s, isOpen: !s.isOpen }));
@@ -525,6 +558,12 @@ const TargetGame = () => {
       console.log('Ball moved successfully');
       return newPos;
     });
+  };
+
+  const handleCookieConsent = () => {
+    setCookieConsent(true);
+    Cookies.set('cookieConsent', 'true', { expires: 365 });
+    Cookies.set('highScore', highScore, { expires: 365 });
   };
 
   return (
@@ -599,6 +638,23 @@ const TargetGame = () => {
         </div>
       )}
       <ClicksRemaining clicksLeft={maxClicks - clickCount} />
+      {!cookieConsent && (
+        <div className="cookie-consent absolute bottom-0 left-0 right-0 bg-gray-800 text-white p-4 text-center">
+          <p className="mb-2">This site uses cookies to save your high score. Do you consent to the use of cookies?</p>
+          <button 
+            onClick={(e) => { e.stopPropagation(); handleCookieConsent(); }}
+            className="bg-blue-500 text-white px-4 py-2 rounded mr-2 hover:bg-blue-600 transition-colors"
+          >
+            Accept
+          </button>
+          <button 
+            onClick={(e) => { e.stopPropagation(); setCookieConsent(false); }}
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors"
+          >
+            Decline
+          </button>
+        </div>
+      )}
     </div>
   );
 };
