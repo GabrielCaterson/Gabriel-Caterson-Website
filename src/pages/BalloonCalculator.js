@@ -47,9 +47,10 @@ const ItemRow = ({ price, quantity, onQuantityChange, onDelete, isCustom }) => (
       <input
         type="number"
         className="w-16 mx-2 p-1 text-center border rounded outline outline-slate-200 outline-2"
-        value={quantity}
+        value={quantity || ''}
         onChange={(e) => onQuantityChange(Math.max(0, parseInt(e.target.value) || 0))}
         min="0"
+        placeholder="0"
       />
       <button
         className="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300"
@@ -153,47 +154,59 @@ const App = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-4 bg-white rounded shadow text-black">
-      <style>{hideSpinnerCSS}</style>
-      <h1 className="text-3xl font-bold mb-2 text-center">Balloon Price Calculator</h1>
-      <h2 className="text-xl mb-4 text-center text-gray-600">Welcome to the air dungeon</h2>
-      <h3 className="text-2xl font-bold mb-4 text-center">
-        Total: ${totalPrice.toFixed(2)}
-      </h3>
-      {items.map((item) => (
-        <ItemRow
-          key={item.id}
-          price={item.price}
-          quantity={item.quantity}
-          onQuantityChange={(newQuantity) => handleQuantityChange(item.id, newQuantity)}
-          isCustom={false}
-        />
-      ))}
-      {customItems.map((item) => (
-        <ItemRow
-          key={item.id}
-          price={item.price}
-          quantity={item.quantity}
-          onQuantityChange={(newQuantity) => handleCustomQuantityChange(item.id, newQuantity)}
-          onDelete={() => deleteCustomItem(item.id)}
-          isCustom={true}
-        />
-      ))}
-      <CustomPriceInput onAdd={addCustomItem} />
-      <p className="text-sm text-gray-500 mt-4 text-center">
-        Made with 💚 (and a little helium) by Gabriel Caterson
-      </p>
-      {!cookieAccepted && (
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 text-center">
-          This site uses cookies (don't tell bakery).
-          <button
-            onClick={handleCookieAccept}
-            className="ml-2 bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
-          >
-            Accept
-          </button>
-        </div>
-      )}
+    <div className="min-h-screen bg-white">
+      <div className="max-w-md mx-auto pt-8 p-4 text-black">
+        <style>
+          {`
+            ${hideSpinnerCSS}
+            html, body {
+              background-color: white;
+              margin: 0;
+              padding: 0;
+              min-height: 100vh;
+            }
+          `}
+        </style>
+        <h1 className="text-3xl font-bold mb-2 text-center">Balloon Price Calculator</h1>
+        <h2 className="text-xl mb-4 text-center text-gray-600">Welcome to the air dungeon</h2>
+        <h3 className="text-2xl font-bold mb-4 text-center">
+          Total: ${totalPrice.toFixed(2)}
+        </h3>
+        {items.map((item) => (
+          <ItemRow
+            key={item.id}
+            price={item.price}
+            quantity={item.quantity}
+            onQuantityChange={(newQuantity) => handleQuantityChange(item.id, newQuantity)}
+            isCustom={false}
+          />
+        ))}
+        {customItems.map((item) => (
+          <ItemRow
+            key={item.id}
+            price={item.price}
+            quantity={item.quantity}
+            onQuantityChange={(newQuantity) => handleCustomQuantityChange(item.id, newQuantity)}
+            onDelete={() => deleteCustomItem(item.id)}
+            isCustom={true}
+          />
+        ))}
+        <CustomPriceInput onAdd={addCustomItem} />
+        <p className="text-sm text-gray-500 mt-4 text-center">
+          Made with 💚 (and a little helium) by Gabriel Caterson
+        </p>
+        {!cookieAccepted && (
+          <div className="fixed bottom-0 left-0 right-0 bg-white p-4 text-center border-t border-gray-200">
+            This site uses cookies (don't tell bakery).
+            <button
+              onClick={handleCookieAccept}
+              className="ml-2 bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+            >
+              Accept
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

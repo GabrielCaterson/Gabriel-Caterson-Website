@@ -24,7 +24,7 @@ const router = createHashRouter(
     [
        {
            path: "/",
-           errorElement: <TargetGame />,
+           errorElement: <App />,
            children : [
                {
                    path: "/",
